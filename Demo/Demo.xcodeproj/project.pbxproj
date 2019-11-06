@@ -1,0 +1,370 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07CABF51236FF4FB00A50B58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CABF50236FF4FB00A50B58 /* AppDelegate.swift */; };
+		07CABF53236FF4FB00A50B58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CABF52236FF4FB00A50B58 /* SceneDelegate.swift */; };
+		07CABF55236FF4FB00A50B58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CABF54236FF4FB00A50B58 /* ViewController.swift */; };
+		07CABF58236FF4FB00A50B58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CABF56236FF4FB00A50B58 /* Main.storyboard */; };
+		07CABF5A236FF4FB00A50B58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07CABF59236FF4FB00A50B58 /* Assets.xcassets */; };
+		07CABF5D236FF4FB00A50B58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CABF5B236FF4FB00A50B58 /* LaunchScreen.storyboard */; };
+		07CABF66236FF59400A50B58 /* XMindSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CABF62236FF51B00A50B58 /* XMindSDK.framework */; };
+		07CABF67236FF59400A50B58 /* XMindSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07CABF62236FF51B00A50B58 /* XMindSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		07CABF68236FF59400A50B58 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				07CABF67236FF59400A50B58 /* XMindSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		07CABF4E236FF4FB00A50B58 /* XMindSDK-Demo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XMindSDK-Demo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		07CABF50236FF4FB00A50B58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		07CABF52236FF4FB00A50B58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		07CABF54236FF4FB00A50B58 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07CABF57236FF4FB00A50B58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		07CABF59236FF4FB00A50B58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		07CABF5C236FF4FB00A50B58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		07CABF5E236FF4FB00A50B58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07CABF62236FF51B00A50B58 /* XMindSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMindSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07CABF4B236FF4FB00A50B58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07CABF66236FF59400A50B58 /* XMindSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07CABED5236FEFF700A50B58 = {
+			isa = PBXGroup;
+			children = (
+				07CABF4F236FF4FB00A50B58 /* XMindSDK-Demo-iOS */,
+				07CABF19236FF13C00A50B58 /* Products */,
+				07CABF2D236FF19700A50B58 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		07CABF19236FF13C00A50B58 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07CABF4E236FF4FB00A50B58 /* XMindSDK-Demo-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07CABF2D236FF19700A50B58 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07CABF62236FF51B00A50B58 /* XMindSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		07CABF4F236FF4FB00A50B58 /* XMindSDK-Demo-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				07CABF50236FF4FB00A50B58 /* AppDelegate.swift */,
+				07CABF52236FF4FB00A50B58 /* SceneDelegate.swift */,
+				07CABF54236FF4FB00A50B58 /* ViewController.swift */,
+				07CABF56236FF4FB00A50B58 /* Main.storyboard */,
+				07CABF59236FF4FB00A50B58 /* Assets.xcassets */,
+				07CABF5B236FF4FB00A50B58 /* LaunchScreen.storyboard */,
+				07CABF5E236FF4FB00A50B58 /* Info.plist */,
+			);
+			path = "XMindSDK-Demo-iOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		07CABF4D236FF4FB00A50B58 /* XMindSDK-Demo-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07CABF61236FF4FB00A50B58 /* Build configuration list for PBXNativeTarget "XMindSDK-Demo-iOS" */;
+			buildPhases = (
+				07CABF4A236FF4FB00A50B58 /* Sources */,
+				07CABF4B236FF4FB00A50B58 /* Frameworks */,
+				07CABF4C236FF4FB00A50B58 /* Resources */,
+				07CABF68236FF59400A50B58 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "XMindSDK-Demo-iOS";
+			productName = "XMindSDK-Demo-iOS";
+			productReference = 07CABF4E236FF4FB00A50B58 /* XMindSDK-Demo-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07CABED6236FEFF700A50B58 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				TargetAttributes = {
+					07CABF4D236FF4FB00A50B58 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+				};
+			};
+			buildConfigurationList = 07CABED9236FEFF700A50B58 /* Build configuration list for PBXProject "Demo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 07CABED5236FEFF700A50B58;
+			productRefGroup = 07CABF19236FF13C00A50B58 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				07CABF4D236FF4FB00A50B58 /* XMindSDK-Demo-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		07CABF4C236FF4FB00A50B58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07CABF5D236FF4FB00A50B58 /* LaunchScreen.storyboard in Resources */,
+				07CABF5A236FF4FB00A50B58 /* Assets.xcassets in Resources */,
+				07CABF58236FF4FB00A50B58 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07CABF4A236FF4FB00A50B58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07CABF55236FF4FB00A50B58 /* ViewController.swift in Sources */,
+				07CABF51236FF4FB00A50B58 /* AppDelegate.swift in Sources */,
+				07CABF53236FF4FB00A50B58 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		07CABF56236FF4FB00A50B58 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07CABF57236FF4FB00A50B58 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		07CABF5B236FF4FB00A50B58 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07CABF5C236FF4FB00A50B58 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		07CABEDA236FEFF700A50B58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		07CABEDB236FEFF700A50B58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		07CABF5F236FF4FB00A50B58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4WV38P2X5K;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "XMindSDK-Demo-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.xmind.XMindSDK-Demo-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		07CABF60236FF4FB00A50B58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4WV38P2X5K;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "XMindSDK-Demo-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.xmind.XMindSDK-Demo-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07CABED9236FEFF700A50B58 /* Build configuration list for PBXProject "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07CABEDA236FEFF700A50B58 /* Debug */,
+				07CABEDB236FEFF700A50B58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07CABF61236FF4FB00A50B58 /* Build configuration list for PBXNativeTarget "XMindSDK-Demo-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07CABF5F236FF4FB00A50B58 /* Debug */,
+				07CABF60236FF4FB00A50B58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07CABED6236FEFF700A50B58 /* Project object */;
+}
