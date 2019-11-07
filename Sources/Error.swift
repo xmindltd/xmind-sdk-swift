@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum XMindSDKError: Swift.Error {
+    case extractFile
+    case fileNotFound
+}
