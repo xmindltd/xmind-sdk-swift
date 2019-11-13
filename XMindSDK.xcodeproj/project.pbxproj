@@ -7,19 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07637C9D237BAA4400E05FE9 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637C9C237BAA4400E05FE9 /* Manifest.swift */; };
+		07637C9F237BB1AB00E05FE9 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637C9E237BB1AB00E05FE9 /* Metadata.swift */; };
+		07637CA1237BCD3300E05FE9 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637CA0237BCD3300E05FE9 /* Relationship.swift */; };
+		07637CA3237BCE4200E05FE9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637CA2237BCE4200E05FE9 /* Theme.swift */; };
+		07637CA5237BD16600E05FE9 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637CA4237BD16600E05FE9 /* Point.swift */; };
+		07637CA7237BD27E00E05FE9 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637CA6237BD27E00E05FE9 /* Marker.swift */; };
 		07B6604023700BE4000FE35A /* Workbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6603F23700BE4000FE35A /* Workbook.swift */; };
 		07B6604223700C9B000FE35A /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6604123700C9B000FE35A /* Topic.swift */; };
 		07B6604423701739000FE35A /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6604323701739000FE35A /* Error.swift */; };
 		07CABF43236FF35C00A50B58 /* XMindSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CABF41236FF35C00A50B58 /* XMindSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07FE404B23754B300070DE70 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FE404A23754B300070DE70 /* Sheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07637C9C237BAA4400E05FE9 /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
+		07637C9E237BB1AB00E05FE9 /* Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
+		07637CA0237BCD3300E05FE9 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		07637CA2237BCE4200E05FE9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		07637CA4237BD16600E05FE9 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		07637CA6237BD27E00E05FE9 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		07B6603F23700BE4000FE35A /* Workbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workbook.swift; sourceTree = "<group>"; };
 		07B6604123700C9B000FE35A /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		07B6604323701739000FE35A /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		07CABF3E236FF35C00A50B58 /* XMindSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XMindSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CABF41236FF35C00A50B58 /* XMindSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMindSDK.h; sourceTree = "<group>"; };
 		07CABF42236FF35C00A50B58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07FE404A23754B300070DE70 /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +72,13 @@
 				07B6603F23700BE4000FE35A /* Workbook.swift */,
 				07B6604123700C9B000FE35A /* Topic.swift */,
 				07B6604323701739000FE35A /* Error.swift */,
+				07FE404A23754B300070DE70 /* Sheet.swift */,
+				07637C9C237BAA4400E05FE9 /* Manifest.swift */,
+				07637C9E237BB1AB00E05FE9 /* Metadata.swift */,
+				07637CA0237BCD3300E05FE9 /* Relationship.swift */,
+				07637CA2237BCE4200E05FE9 /* Theme.swift */,
+				07637CA4237BD16600E05FE9 /* Point.swift */,
+				07637CA6237BD27E00E05FE9 /* Marker.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -149,8 +170,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B6604023700BE4000FE35A /* Workbook.swift in Sources */,
+				07637CA3237BCE4200E05FE9 /* Theme.swift in Sources */,
+				07637C9D237BAA4400E05FE9 /* Manifest.swift in Sources */,
+				07637CA1237BCD3300E05FE9 /* Relationship.swift in Sources */,
 				07B6604423701739000FE35A /* Error.swift in Sources */,
+				07637CA5237BD16600E05FE9 /* Point.swift in Sources */,
 				07B6604223700C9B000FE35A /* Topic.swift in Sources */,
+				07637C9F237BB1AB00E05FE9 /* Metadata.swift in Sources */,
+				07FE404B23754B300070DE70 /* Sheet.swift in Sources */,
+				07637CA7237BD27E00E05FE9 /* Marker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

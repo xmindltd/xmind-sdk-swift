@@ -1,8 +1,8 @@
 //
-//  Topic.swift
+//  Sheet.swift
 //  XMindSDK
 //
-//  Created by CY H on 2019/11/4.
+//  Created by h on 2019/11/8.
 //
 //  Copyright © 2019 XMind.
 //
@@ -24,29 +24,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 import Foundation
 
-public class Topic: Codable {
-    
-    public class Children: Codable {
-        public let attached: [Topic]?
-        public let detached: [Topic]?
-    }
-    
-    
-    
+public struct Sheet: Codable {
     public let id: String
     
-    public let `class`: String?
+    public let `class`: String
     
-    public let title: String?
+    public let title: String
     
-    public let structureClass: String?
+    public let rootTopic: Topic?
     
-    public let titleUnedited: Bool
+    public let topicPositioning: String
     
-    public let markers: [Marker]?
+    public let relationships: [Relationship]?
     
-    public let children: Children?
+    public let theme: Theme
+
 }

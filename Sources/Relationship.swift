@@ -1,8 +1,8 @@
 //
-//  Topic.swift
+//  Relationship.swift
 //  XMindSDK
 //
-//  Created by CY H on 2019/11/4.
+//  Created by h on 2019/11/13.
 //
 //  Copyright © 2019 XMind.
 //
@@ -24,29 +24,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 import Foundation
 
-public class Topic: Codable {
-    
-    public class Children: Codable {
-        public let attached: [Topic]?
-        public let detached: [Topic]?
-    }
-    
-    
-    
+public struct Relationship: Codable {
+
     public let id: String
     
-    public let `class`: String?
-    
-    public let title: String?
-    
-    public let structureClass: String?
+    public let end1Id: String
+    public let end2Id: String
     
     public let titleUnedited: Bool
     
-    public let markers: [Marker]?
+    public let controlPoints: [String: Point]
     
-    public let children: Children?
 }

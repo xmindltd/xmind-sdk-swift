@@ -1,8 +1,8 @@
 //
-//  Topic.swift
+//  Manifest.swift
 //  XMindSDK
 //
-//  Created by CY H on 2019/11/4.
+//  Created by h on 2019/11/13.
 //
 //  Copyright © 2019 XMind.
 //
@@ -24,29 +24,38 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 import Foundation
 
-public class Topic: Codable {
+public final class Manifest: Codable, CustomStringConvertible {
     
-    public class Children: Codable {
-        public let attached: [Topic]?
-        public let detached: [Topic]?
+    private var _fileEntries: [String: Empty]
+    
+    private struct Empty: Codable {
+        
     }
     
+    public init() {
+        _fileEntries = [:]
+    }
     
+    enum CodingKeys: String, CodingKey {
+        case _fileEntries = "file-entries"
+    }
     
-    public let id: String
+    public var fileEntries: Set<String> {
+        Set(_fileEntries.keys)
+    }
     
-    public let `class`: String?
+    public var description: String {
+        return fileEntries.description
+    }
     
-    public let title: String?
+    public func insert(fileEntrie: String) {
+        _fileEntries[fileEntrie] = Empty()
+    }
     
-    public let structureClass: String?
+    public func remove(fileEntrie: String) {
+        _fileEntries.removeValue(forKey: fileEntrie)
+    }
     
-    public let titleUnedited: Bool
-    
-    public let markers: [Marker]?
-    
-    public let children: Children?
 }

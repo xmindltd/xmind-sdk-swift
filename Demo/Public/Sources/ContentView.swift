@@ -1,8 +1,8 @@
 //
-//  Topic.swift
-//  XMindSDK
+//  ContentView.swift
+//  Demo
 //
-//  Created by CY H on 2019/11/4.
+//  Created by CY H on 2019/11/8.
 //
 //  Copyright © 2019 XMind.
 //
@@ -25,28 +25,18 @@
 //  THE SOFTWARE.
 
 
-import Foundation
+import SwiftUI
 
-public class Topic: Codable {
-    
-    public class Children: Codable {
-        public let attached: [Topic]?
-        public let detached: [Topic]?
+struct ContentView: View {
+    var body: some View {
+        Text("XMindSDK")
+            .frame(maxWidth: .infinity, maxHeight: .infinity).onAppear(perform: XMindFileTest)
     }
-    
-    
-    
-    public let id: String
-    
-    public let `class`: String?
-    
-    public let title: String?
-    
-    public let structureClass: String?
-    
-    public let titleUnedited: Bool
-    
-    public let markers: [Marker]?
-    
-    public let children: Children?
+}
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
