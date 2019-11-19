@@ -1,8 +1,8 @@
 //
-//  Manifest.swift
+//  PureJsonStructBox.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/13.
+//  Created by h on 2019/11/14.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,36 +26,40 @@
 
 import Foundation
 
-public final class Manifest: Codable, CustomStringConvertible {
+final class PureJsonStructBox<PureJsonStructModel: Codable>: FileModelBox {
     
-    private var _fileEntries: [String: Empty]
+    typealias Model = PureJsonStructModel
     
-    private struct Empty: Codable {
+    var model: PureJsonStructModel {
+        didSet {
+            needSync = true
+        }
+    }
+    
+    func syncWithFileIfNeeded() {
+        if needSync {
+            if let data = try? JSONEncoder().encode(model) {
+                fileManager.createFile(atPath: path, contents: data, attributes: nil)
+            }
+            needSync = false
+        }
+    }
+    
+    private(set) var needSync: Bool = false
+    
+    private let fileManager: FileManager
+    private let path: String
+    
+    init(fileManager: FileManager, path: String, defaultValue: @autoclosure () -> PureJsonStructModel) {
+        self.fileManager = fileManager
+        self.path = path
+        
+        if let data = fileManager.contents(atPath: path), let model = try? JSONDecoder().decode(PureJsonStructModel.self, from: data) {
+            self.model = model
+        } else {
+            self.model = defaultValue()
+            self.needSync = true
+        }
         
     }
-    
-    public init() {
-        _fileEntries = [:]
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case _fileEntries = "file-entries"
-    }
-    
-    public var fileEntries: Set<String> {
-        Set(_fileEntries.keys)
-    }
-    
-    public var description: String {
-        return fileEntries.description
-    }
-    
-    public func insert(fileEntrie: String) {
-        _fileEntries[fileEntrie] = Empty()
-    }
-    
-    public func remove(fileEntrie: String) {
-        _fileEntries.removeValue(forKey: fileEntrie)
-    }
-    
 }

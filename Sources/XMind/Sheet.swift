@@ -1,8 +1,8 @@
 //
-//  Metadata.swift
+//  Sheet.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/13.
+//  Created by h on 2019/11/8.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,20 +26,45 @@
 
 import Foundation
 
-public struct Metadata: Codable {
+public class Sheet: Codable {
+    public let id: String
     
-    public struct Creator: Codable {
-        public let name: String
-        public let version: String
+    public let `class`: String
+    
+    public let title: String
+    
+    public let rootTopic: Topic
+    
+    public let topicPositioning: String
+    
+    public private(set) var relationships: [Relationship]?
+    
+    public let theme: Theme
+    
+    public init(title: String, rootTopic: Topic) {
+        self.id = UUID().uuidString
+        self.class = "sheet"
+        self.title = title
+        self.rootTopic = rootTopic
+        self.topicPositioning = "fixed"
+        self.relationships = nil
+        self.theme = Theme.snowbrush
     }
     
-    public var activeSheetId: String
-    
-    public let creator: Creator
-    
-    init() {
-        creator = Creator(name: "XMindSDK", version: "1.0")
-        activeSheetId = ""
+    enum CodingKeys: String, CodingKey {
+        case id
+        case `class`
+        case title
+        case rootTopic
+        case topicPositioning
+        case relationships
+        case theme
     }
-    
+
+}
+
+extension Sheet: Equatable {
+    public static func == (lhs: Sheet, rhs: Sheet) -> Bool {
+        return lhs === rhs
+    }
 }

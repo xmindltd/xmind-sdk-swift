@@ -1,5 +1,5 @@
 //
-//  Theme.swift
+//  Relationship.swift
 //  XMindSDK
 //
 //  Created by h on 2019/11/13.
@@ -26,28 +26,14 @@
 
 import Foundation
 
-public struct Theme: Codable {
-    
-    public struct Item: Codable {
-        let styleId: String?
-        let type: String?
-        let properties: [String: String]?
-    }
-    
+public struct Relationship: Codable {
+
     public let id: String
     
-    public let importantTopic: Item?
-    public let minorTopic: Item?
-    public let expiredTopic: Item?
-    public let centralTopic: Item?
-    public let boundary: Item?
-    public let floatingTopic: Item?
-    public let subTopic: Item?
-    public let mainTopic: Item?
-    public let calloutTopic: Item?
-    public let summary: Item?
-    public let summaryTopic: Item?
-    public let relationship: Item?
-    public let map: Item?
-    public let level3: Item?
+    public let end1Id: String
+    public let end2Id: String
+    
+    public let titleUnedited: Bool
+    
+    public let controlPoints: [String: Point]
 }

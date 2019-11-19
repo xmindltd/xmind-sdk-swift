@@ -1,8 +1,8 @@
 //
-//  XMindFileTest.swift
-//  Demo
+//  Theme.swift
+//  XMindSDK
 //
-//  Created by CY H on 2019/11/7.
+//  Created by h on 2019/11/13.
 //
 //  Copyright © 2019 XMind.
 //
@@ -24,46 +24,34 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 import Foundation
-import XMindSDK
 
-
-func XMindFileTest() {
-    guard let filePath = Bundle.main.path(forResource: "example0", ofType: "xmind") else { return }
-    testFile(filePath: filePath)
-}
-
-
-private func testFile(filePath: String) {
+public struct Theme: Codable {
     
-    do {
-        let wb = try Workbook.new()
-        
-        
-        let root = wb.sheets.first!.rootTopic
-        root.addSubTopic("dkjfhakdh")
-        
-        root.addSubTopic("topa")
-        
-        let sub1 = root.addSubTopic("asdh")
-        
-        sub1.addSubTopic("asdasd")
-        sub1.addSubTopic("asdasd")
-        sub1.addSubTopic("asdasd")
-        
-        sub1.addSubTopic(root)
-        
-        wb.addSheet(Sheet(title: "asldkjaskd", rootTopic: Topic(title: "sdhlhasld")))
-        
-        let file = NSTemporaryDirectory() + "test.xmind"
-        
-        try wb.save(to: file)
-        
-        print(file)
-        
-    } catch let e {
-        print(e)
+    public struct Item: Codable {
+        let styleId: String?
+        let type: String?
+        let properties: [String: String]?
     }
     
+    public let id: String
+    
+    public let importantTopic: Item?
+    public let minorTopic: Item?
+    public let expiredTopic: Item?
+    public let centralTopic: Item?
+    public let boundary: Item?
+    public let floatingTopic: Item?
+    public let subTopic: Item?
+    public let mainTopic: Item?
+    public let calloutTopic: Item?
+    public let summary: Item?
+    public let summaryTopic: Item?
+    public let relationship: Item?
+    public let map: Item?
+    public let level3: Item?
+    
+    static let snowbrush: Theme = {
+        return try! JSONDecoder().decode(Theme.self, from: theme_snowbrush.data(using: .utf8)!)
+    }()
 }

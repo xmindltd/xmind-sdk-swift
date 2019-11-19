@@ -1,8 +1,8 @@
 //
-//  Sheet.swift
+//  FileModelBox.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/8.
+//  Created by h on 2019/11/14.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,19 +26,12 @@
 
 import Foundation
 
-public struct Sheet: Codable {
-    public let id: String
+protocol FileModelBox: class {
+    associatedtype Model
     
-    public let `class`: String
+    var model: Model { get }
     
-    public let title: String
+    func syncWithFileIfNeeded()
     
-    public let rootTopic: Topic?
-    
-    public let topicPositioning: String
-    
-    public let relationships: [Relationship]?
-    
-    public let theme: Theme
-
+    var needSync: Bool { get }
 }

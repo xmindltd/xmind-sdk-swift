@@ -1,5 +1,5 @@
 //
-//  Relationship.swift
+//  Manifest.swift
 //  XMindSDK
 //
 //  Created by h on 2019/11/13.
@@ -26,15 +26,43 @@
 
 import Foundation
 
-public struct Relationship: Codable {
-
-    public let id: String
+public struct Manifest: Codable, CustomStringConvertible {
     
-    public let end1Id: String
-    public let end2Id: String
+    private var _fileEntries: [String: Empty] = [:]
     
-    public let titleUnedited: Bool
+    private struct Empty: Codable {
+        
+    }
     
-    public let controlPoints: [String: Point]
+    public init(fileEntries: String...) {
+        fileEntries.forEach {
+            insert(fileEntrie: $0)
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case _fileEntries = "file-entries"
+    }
+    
+    public var fileEntries: Set<String> {
+        Set(_fileEntries.keys)
+    }
+    
+    public var description: String {
+        return fileEntries.description
+    }
+    
+    public mutating func insert(fileEntrie: String) {
+        _fileEntries[fileEntrie] = Empty()
+    }
+    
+    public mutating func remove(fileEntrie: String) {
+        _fileEntries.removeValue(forKey: fileEntrie)
+    }
+    
+    
+    static func makeDefault() -> Manifest {
+        return Manifest(fileEntries: "content.json", "metadata.json")
+    }
     
 }

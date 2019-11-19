@@ -34,24 +34,16 @@ import ZipArchive
 /// The temporary content will be deleted while the workbook object deinited.
 public class Workbook {
     
+    private lazy var content_xmlBox = PureJsonStructBox<String>(fileManager: fileManager, path: "content.xml", defaultValue: content_xml)
     
+    private lazy var manifestBox = PureJsonStructBox<Manifest>(fileManager: fileManager, path: "manifest.json", defaultValue: Manifest.makeDefault())
     
-    public lazy var manifest: Manifest = {
-        return decode(Manifest.self, subPath: "manifest.json") ?? Manifest()
-    }()
+    private lazy var metadataBox = PureJsonStructBox<Metadata>(fileManager: fileManager, path: "metadata.json", defaultValue: Metadata.makeDefault())
     
-    public lazy var metadata: Metadata = {
-        return decode(Metadata.self, subPath: "metadata.json") ?? Metadata()
-    }()
-    
-    public lazy var content: [Sheet] = {
-        return decode([Sheet].self, subPath: "content.json") ?? []
-    }()
-    
+    private lazy var sheetsBox = SheetsBox(fileManager: fileManager, manifestBox: manifestBox, metadataBox: metadataBox)
+
     private let fileManager: FileManager
-    
-    private let jsonDecoder = JSONDecoder()
-    
+        
     private init(temporaryPathFileManager: FileManager) {
         fileManager = temporaryPathFileManager
     }
@@ -63,24 +55,22 @@ public class Workbook {
             print("XMindSDK: Fail to clean the temporary file. File path is \"\(fileManager.currentDirectoryPath)\".")
         }
     }
+
+}
+
+public extension Workbook {
+    var manifest: Manifest { manifestBox.model }
     
-    private func fetchData(subPath: String) -> Data? {
-        return fileManager.contents(atPath: subPath)
+    var metadata: Metadata { metadataBox.model }
+    
+    var sheets: [Sheet] { sheetsBox.model }
+    
+    func addSheet(_ sheet: Sheet) {
+        sheetsBox.add(sheet: sheet)
     }
     
-    private func writeData(subPath: String, data: Data) {
-        fileManager.createFile(atPath: subPath, contents: data, attributes: nil)
-    }
-    
-    private func decode<T>(_ type: T.Type, subPath: String) -> T? where T : Decodable {
-        if let data = fetchData(subPath: subPath) {
-            return try? jsonDecoder.decode(type, from: data)
-        }
-        return nil
-    }
-    
-    private func syncTemporaryPath() {
-        
+    func removeSheet(_ sheet: Sheet) {
+        sheetsBox.remove(sheet: sheet)
     }
 }
 
@@ -146,6 +136,13 @@ public extension Workbook {
 }
 
 public extension Workbook {
+    
+    func syncTemporaryPath() {
+        // Because the sheetsBox may update other boxs. SheetsBox must sync first.
+        sheetsBox.syncWithFileIfNeeded()
+        manifestBox.syncWithFileIfNeeded()
+        metadataBox.syncWithFileIfNeeded()
+    }
     
     func save(to path: String) throws {
         syncTemporaryPath()

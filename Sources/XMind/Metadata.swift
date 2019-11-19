@@ -1,8 +1,8 @@
 //
-//  Topic.swift
+//  Metadata.swift
 //  XMindSDK
 //
-//  Created by CY H on 2019/11/4.
+//  Created by h on 2019/11/13.
 //
 //  Copyright © 2019 XMind.
 //
@@ -24,29 +24,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 import Foundation
 
-public class Topic: Codable {
+public struct Metadata: Codable {
     
-    public class Children: Codable {
-        public let attached: [Topic]?
-        public let detached: [Topic]?
+    public struct Creator: Codable {
+        public let name: String
+        public let version: String
     }
     
+    public internal(set) var activeSheetId: String
     
+    public let creator: Creator
     
-    public let id: String
-    
-    public let `class`: String?
-    
-    public let title: String?
-    
-    public let structureClass: String?
-    
-    public let titleUnedited: Bool
-    
-    public let markers: [Marker]?
-    
-    public let children: Children?
+    static func makeDefault() -> Metadata {
+        return Metadata(activeSheetId: "", creator: Creator(name: "XMindSDK", version: "1.0"))
+    }
 }
