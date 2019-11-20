@@ -32,7 +32,7 @@ import ZipArchive
 /// You can open or new a workbook(xmind file).
 /// To opera a xmind file, workbook use a temporary storge at temporary path on the disk.
 /// The temporary content will be deleted while the workbook object deinited.
-public class Workbook {
+public final class Workbook {
     
     private lazy var content_xmlBox = PureJsonStructBox<String>(fileManager: fileManager, path: "content.xml", defaultValue: content_xml)
     
@@ -43,6 +43,8 @@ public class Workbook {
     private lazy var sheetsBox = SheetsBox(fileManager: fileManager, manifestBox: manifestBox, metadataBox: metadataBox)
 
     private let fileManager: FileManager
+    
+    private var sourcePath: String? = nil
         
     private init(temporaryPathFileManager: FileManager) {
         fileManager = temporaryPathFileManager
@@ -78,7 +80,7 @@ public extension Workbook {
 public extension Workbook {
     
     private static func makeTemporaryDirectory() -> String {
-        return NSTemporaryDirectory() + UUID().uuidString
+        return (NSTemporaryDirectory() as NSString).appendingPathComponent(UUID().uuidString)
     }
     
     /// Open a xmind file at the given file path.
@@ -104,7 +106,9 @@ public extension Workbook {
         }
         
         if fileManager.changeCurrentDirectoryPath(temporaryPath) {
-            return Workbook(temporaryPathFileManager: fileManager)
+            let workbook = Workbook(temporaryPathFileManager: fileManager)
+            workbook.sourcePath = filePath
+            return workbook
         } else {
             throw XMindSDKError.temporaryFolderCreationFailed
         }
@@ -137,17 +141,30 @@ public extension Workbook {
 
 public extension Workbook {
     
-    func syncTemporaryPath() {
+    private func syncTemporaryPath() {
         // Because the sheetsBox may update other boxs. SheetsBox must sync first.
         sheetsBox.syncWithFileIfNeeded()
         manifestBox.syncWithFileIfNeeded()
         metadataBox.syncWithFileIfNeeded()
+        content_xmlBox.syncWithFileIfNeeded()
     }
     
+    /// Save as a xmind file at the given path.
+    /// - Parameter path: Path will save to.
     func save(to path: String) throws {
         syncTemporaryPath()
         if !SSZipArchive.createZipFile(atPath: path, withContentsOfDirectory: fileManager.currentDirectoryPath) {
             throw XMindSDKError.saveFailed
+        }
+    }
+    
+    /// Save to the original source path
+    /// If the workbook is new created, it has no source path. thus, a noSourcePath error of XMindSDKError will be thrown.
+    func save() throws {
+        if let path = sourcePath {
+            try save(to: path)
+        } else {
+            throw XMindSDKError.noSourcePath
         }
     }
 }

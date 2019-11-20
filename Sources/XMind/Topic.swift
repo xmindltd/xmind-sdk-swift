@@ -39,6 +39,7 @@ public class Topic: Codable {
         }
     }
     
+    /// The unique ID of this topic.
     public let id: String
     
     public let `class`: String?
@@ -56,6 +57,11 @@ public class Topic: Codable {
     
     weak private(set) var superTopic: Topic? = nil
     
+    /// Add a topic to self.
+    /// You cant add an ancestor topic, It do nothing.
+    /// If the topic that to be added was alredy contained by self. it will not add twice.
+    /// If the topic had a super topic, it will remove from origin super topic,then add to self.
+    /// - Parameter topic: The topic to be added.
     public func addSubTopic(_ topic: Topic) {
         
         var _topic: Topic? = self
@@ -86,12 +92,18 @@ public class Topic: Codable {
         topic.superTopic = self
     }
     
+    /// A convenience function for add a topic.
+    /// The behave is same as "addSubTopic(_ topic: Topic)".
+    /// The returned topic is the new created topic.
+    /// - Parameter title: Title of the new topic.
     public func addSubTopic(_ title: String) -> Topic {
         let topic = Topic(title: title)
         addSubTopic(topic)
         return topic
     }
     
+    /// Remove a sub topic.
+    /// - Parameter topic: The sub topic.
     public func removeSubTopic(_ topic: Topic) {
         
         guard let droped = children?.attached?.drop(while: { $0 === topic }) else { return }
@@ -101,6 +113,7 @@ public class Topic: Codable {
         }
     }
     
+    /// If the topic has a super topic, it will remove from the super topic.
     public func removeFromSuperTopic() {
         superTopic?.removeSubTopic(self)
     }

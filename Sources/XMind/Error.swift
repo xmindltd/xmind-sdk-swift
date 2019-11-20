@@ -31,4 +31,5 @@ enum XMindSDKError: Swift.Error {
     case fileNotFound
     case temporaryFolderCreationFailed
     case saveFailed
+    case noSourcePath
 }

@@ -29,9 +29,9 @@ import Foundation
 public struct Theme: Codable {
     
     public struct Item: Codable {
-        let styleId: String?
-        let type: String?
-        let properties: [String: String]?
+        public let styleId: String?
+        public let type: String?
+        public let properties: [String: String]?
     }
     
     public let id: String
