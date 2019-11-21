@@ -57,12 +57,35 @@ public class Topic: Codable {
     
     weak private(set) var superTopic: Topic? = nil
     
+    
+    public init(title: String) {
+        self.id = UUID().uuidString
+        self.class = "topic"
+        self.title = title
+        self.structureClass = "org.xmind.ui.map.unbalanced"
+        self.titleUnedited = true
+        self.markers = nil
+        self.children = nil
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case `class`
+        case title
+        case structureClass
+        case titleUnedited
+        case markers
+        case children
+    }
+}
+
+public extension Topic {
     /// Add a topic to self.
     /// You cant add an ancestor topic, It do nothing.
     /// If the topic that to be added was alredy contained by self. it will not add twice.
     /// If the topic had a super topic, it will remove from origin super topic,then add to self.
     /// - Parameter topic: The topic to be added.
-    public func addSubTopic(_ topic: Topic) {
+    func addSubTopic(_ topic: Topic) {
         
         var _topic: Topic? = self
         
@@ -96,7 +119,7 @@ public class Topic: Codable {
     /// The behave is same as "addSubTopic(_ topic: Topic)".
     /// The returned topic is the new created topic.
     /// - Parameter title: Title of the new topic.
-    public func addSubTopic(_ title: String) -> Topic {
+    func addSubTopic(_ title: String) -> Topic {
         let topic = Topic(title: title)
         addSubTopic(topic)
         return topic
@@ -104,7 +127,7 @@ public class Topic: Codable {
     
     /// Remove a sub topic.
     /// - Parameter topic: The sub topic.
-    public func removeSubTopic(_ topic: Topic) {
+    func removeSubTopic(_ topic: Topic) {
         
         guard let droped = children?.attached?.drop(while: { $0 === topic }) else { return }
         
@@ -114,28 +137,26 @@ public class Topic: Codable {
     }
     
     /// If the topic has a super topic, it will remove from the super topic.
-    public func removeFromSuperTopic() {
+    func removeFromSuperTopic() {
         superTopic?.removeSubTopic(self)
     }
     
-    public init(title: String) {
-        self.id = UUID().uuidString
-        self.class = "topic"
-        self.title = title
-        self.structureClass = "org.xmind.ui.map.unbalanced"
-        self.titleUnedited = true
-        self.markers = nil
-        self.children = nil
+    /// Add a marker to the topic, The same class marker can only add once.
+    /// - Parameter marker: Marker to be added.
+    func addMarker(_ marker: Marker) {
+        if markers == nil {
+            markers = [marker]
+        } else {
+            guard let prefix = marker.markerId.split(separator: "-").first else { return }
+            markers!.removeAll { $0.markerId.hasPrefix(prefix) }
+            markers!.append(marker)
+        }
     }
     
-    enum CodingKeys: String, CodingKey {
-        case id
-        case `class`
-        case title
-        case structureClass
-        case titleUnedited
-        case markers
-        case children
+    /// Remove a marker.
+    /// - Parameter marker: Marker to be removed.
+    func removeMarker(_ marker: Marker) {
+        markers?.removeAll { $0 == marker }
     }
 }
 

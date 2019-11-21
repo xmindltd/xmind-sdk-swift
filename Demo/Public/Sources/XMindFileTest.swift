@@ -46,6 +46,8 @@ private func testFile(filePath: String) {
         
         root.addSubTopic("topa")
         
+        root.addMarker(Marker.Flag.darkBlue)
+        
         let sub1 = root.addSubTopic("asdh")
         
         sub1.addSubTopic("asdasd")
