@@ -131,3 +131,9 @@ extension Marker: Equatable {
         return lhs.markerId == rhs.markerId
     }
 }
+
+extension Marker {
+    func isSameGroup(with marker: Marker) -> Bool {
+        return marker.markerId.split(separator: "-").first == self.markerId.split(separator: "-").first
+    }
+}

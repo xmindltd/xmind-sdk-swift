@@ -34,8 +34,6 @@ import ZipArchive
 /// The temporary content will be deleted while the workbook object deinited.
 public final class Workbook {
     
-    private lazy var content_xmlBox = PureJsonStructBox<String>(fileManager: fileManager, path: "content.xml", defaultValue: content_xml)
-    
     private lazy var manifestBox = PureJsonStructBox<Manifest>(fileManager: fileManager, path: "manifest.json", defaultValue: Manifest.makeDefault())
     
     private lazy var metadataBox = PureJsonStructBox<Metadata>(fileManager: fileManager, path: "metadata.json", defaultValue: Metadata.makeDefault())
@@ -146,7 +144,7 @@ public extension Workbook {
         sheetsBox.syncWithFileIfNeeded()
         manifestBox.syncWithFileIfNeeded()
         metadataBox.syncWithFileIfNeeded()
-        content_xmlBox.syncWithFileIfNeeded()
+//        content_xmlBox.syncWithFileIfNeeded()
     }
     
     /// Save as a xmind file at the given path.

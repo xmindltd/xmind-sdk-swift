@@ -32,15 +32,26 @@ public class Sheet: Codable {
     
     public let `class`: String
     
-    public let title: String
+    public var title: String { didSet { setNeedSync() } }
     
     public let rootTopic: Topic
     
     public let topicPositioning: String
     
-    public private(set) var relationships: [Relationship]?
+    public let relationships: [Relationship]?
     
     public let theme: Theme
+    
+    
+    weak var box: SheetsBox? = nil {
+        didSet {
+            rootTopic.box = box
+        }
+    }
+    
+    private func setNeedSync() {
+        box?.needSync = true
+    }
     
     public init(title: String, rootTopic: Topic) {
         self.id = UUID().uuidString

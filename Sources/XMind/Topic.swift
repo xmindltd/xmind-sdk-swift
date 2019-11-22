@@ -39,12 +39,16 @@ public class Topic: Codable {
         }
     }
     
+    struct Image: Codable {
+        let src: String
+    }
+    
     /// The unique ID of this topic.
     public let id: String
     
     public let `class`: String?
     
-    public var title: String?
+    public var title: String? { didSet { setNeedSync() } }
     
     public let structureClass: String?
     
@@ -54,9 +58,19 @@ public class Topic: Codable {
     
     public private(set) var children: Children?
     
+    private var image: Image?
     
     weak private(set) var superTopic: Topic? = nil
+    weak var box: SheetsBox? = nil {
+        didSet {
+            children?.attached?.forEach { $0.box = box }
+            children?.detached?.forEach { $0.box = box }
+        }
+    }
     
+    private func setNeedSync() {
+        box?.needSync = true
+    }
     
     public init(title: String) {
         self.id = UUID().uuidString
@@ -76,6 +90,7 @@ public class Topic: Codable {
         case titleUnedited
         case markers
         case children
+        case image
     }
 }
 
@@ -113,6 +128,9 @@ public extension Topic {
         topic.removeFromSuperTopic()
         children!.attached!.append(topic)
         topic.superTopic = self
+        topic.box = box
+        
+        setNeedSync()
     }
     
     /// A convenience function for add a topic.
@@ -133,7 +151,10 @@ public extension Topic {
         
         for topic in droped {
             topic.superTopic = nil
+            topic.box = nil
         }
+        
+        setNeedSync()
     }
     
     /// If the topic has a super topic, it will remove from the super topic.
@@ -147,16 +168,19 @@ public extension Topic {
         if markers == nil {
             markers = [marker]
         } else {
-            guard let prefix = marker.markerId.split(separator: "-").first else { return }
-            markers!.removeAll { $0.markerId.hasPrefix(prefix) }
+            markers!.removeAll { $0.isSameGroup(with: marker) }
             markers!.append(marker)
         }
+        
+        setNeedSync()
     }
     
     /// Remove a marker.
     /// - Parameter marker: Marker to be removed.
     func removeMarker(_ marker: Marker) {
         markers?.removeAll { $0 == marker }
+        
+        setNeedSync()
     }
 }
 

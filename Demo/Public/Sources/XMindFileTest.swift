@@ -42,22 +42,21 @@ private func testFile(filePath: String) {
         
         
         let root = wb.sheets.first!.rootTopic
-        root.addSubTopic("dkjfhakdh")
         
-        root.addSubTopic("topa")
+        let sub1 = root.addSubTopic("Sub Topic 1")
+        let sub2 = root.addSubTopic("Sub Topic 2")
+        let sub3 = root.addSubTopic("Sub Topic 3")
+        
+        _ = sub3.addSubTopic("Topic 4")
+        _ = sub3.addSubTopic("Topic 5")
+        
+        sub2.addMarker(Marker.Arrow.refresh)
         
         root.addMarker(Marker.Flag.darkBlue)
+
+        sub1.addMarker(Marker.Priority.p2)
         
-        let sub1 = root.addSubTopic("asdh")
-        
-        sub1.addSubTopic("asdasd")
-        sub1.addSubTopic("asdasd")
-        sub1.addSubTopic("asdasd")
-        
-        sub1.addSubTopic(root)
-        
-        wb.addSheet(Sheet(title: "asldkjaskd", rootTopic: Topic(title: "sdhlhasld")))
-        
+                
         let file = NSTemporaryDirectory() + "test.xmind"
         
         try wb.save(to: file)

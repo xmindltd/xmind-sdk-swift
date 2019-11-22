@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0715516B238265AF005684D6 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715516A238265AF005684D6 /* Template.swift */; };
 		075072FA237D259E00DC2A3C /* FileModelBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075072F9237D259E00DC2A3C /* FileModelBox.swift */; };
 		075072FE237D2F3500DC2A3C /* PureJsonStructBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075072FD237D2F3500DC2A3C /* PureJsonStructBox.swift */; };
 		07507302237D306900DC2A3C /* SheetsBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07507301237D306900DC2A3C /* SheetsBox.swift */; };
@@ -25,7 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0715516A238265AF005684D6 /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		075072F9237D259E00DC2A3C /* FileModelBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModelBox.swift; sourceTree = "<group>"; };
 		075072FD237D2F3500DC2A3C /* PureJsonStructBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PureJsonStructBox.swift; sourceTree = "<group>"; };
 		07507301237D306900DC2A3C /* SheetsBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetsBox.swift; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 				07637CA4237BD16600E05FE9 /* Point.swift */,
 				07637CA6237BD27E00E05FE9 /* Marker.swift */,
 				07B6604323701739000FE35A /* Error.swift */,
-				0715516A238265AF005684D6 /* Template.swift */,
 			);
 			path = XMind;
 			sourceTree = "<group>";
@@ -202,7 +199,6 @@
 				07637CA3237BCE4200E05FE9 /* Theme.swift in Sources */,
 				07637C9D237BAA4400E05FE9 /* Manifest.swift in Sources */,
 				07637CA1237BCD3300E05FE9 /* Relationship.swift in Sources */,
-				0715516B238265AF005684D6 /* Template.swift in Sources */,
 				07B6604423701739000FE35A /* Error.swift in Sources */,
 				07637CA5237BD16600E05FE9 /* Point.swift in Sources */,
 				07B6604223700C9B000FE35A /* Topic.swift in Sources */,

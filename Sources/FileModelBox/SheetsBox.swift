@@ -37,7 +37,7 @@ class SheetsBox: FileModelBox {
             if let data = try? JSONEncoder().encode(model) {
                 fileManager.createFile(atPath: "content.json", contents: data, attributes: nil)
             }
-//            needSync = false
+            needSync = false
         }
     }
     
@@ -62,7 +62,7 @@ class SheetsBox: FileModelBox {
             self.needSync = true
             
             metadataBox.model.activeSheetId = sheet.id
-//            sheet.box = self
+            sheet.box = self
         }
     }
     
@@ -73,15 +73,15 @@ class SheetsBox: FileModelBox {
         
         model.append(sheet)
         metadataBox.model.activeSheetId = sheet.id
-//        sheet.box = self
-//        needSync = true
+        sheet.box = self
+        needSync = true
     }
     
     func remove(sheet: Sheet) {
         _ = model.drop { $0 === sheet }
         metadataBox.model.activeSheetId = model.last?.id ?? ""
-//        sheet.box = nil
-//        needSync = true
+        sheet.box = nil
+        needSync = true
     }
     
 }
