@@ -27,6 +27,9 @@
 		07CABF5D236FF4FB00A50B58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CABF5B236FF4FB00A50B58 /* LaunchScreen.storyboard */; };
 		07CABF66236FF59400A50B58 /* XMindSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CABF62236FF51B00A50B58 /* XMindSDK.framework */; };
 		07CABF67236FF59400A50B58 /* XMindSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07CABF62236FF51B00A50B58 /* XMindSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07E117342398A5EA0042C083 /* example1.xmind in Resources */ = {isa = PBXBuildFile; fileRef = 07E117332398A5EA0042C083 /* example1.xmind */; };
+		07E117352398A5EA0042C083 /* example1.xmind in Resources */ = {isa = PBXBuildFile; fileRef = 07E117332398A5EA0042C083 /* example1.xmind */; };
+		07E1173F2398E78D0042C083 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E1173E2398E78D0042C083 /* CryptoSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +80,8 @@
 		07CABF5C236FF4FB00A50B58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07CABF5E236FF4FB00A50B58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07CABF62236FF51B00A50B58 /* XMindSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMindSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07E117332398A5EA0042C083 /* example1.xmind */ = {isa = PBXFileReference; lastKnownFileType = file; path = example1.xmind; sourceTree = "<group>"; };
+		07E1173E2398E78D0042C083 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../Carthage/Build/Mac/CryptoSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E1173F2398E78D0042C083 /* CryptoSwift.framework in Frameworks */,
 				07BEC0762373BD5500A94E7A /* XMindSDK.framework in Frameworks */,
 				076F370923740AE600565A92 /* ZipArchive.framework in Frameworks */,
 			);
@@ -134,6 +140,7 @@
 		07BEC06D2373BA3700A94E7A /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				07E117332398A5EA0042C083 /* example1.xmind */,
 				07BEC06F2373BA6700A94E7A /* example0.xmind */,
 			);
 			path = Examples;
@@ -171,6 +178,7 @@
 		07CABF2D236FF19700A50B58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07E1173E2398E78D0042C083 /* CryptoSwift.framework */,
 				07BEC0832374095800A94E7A /* ZipArchive.framework */,
 				076F370823740AE500565A92 /* ZipArchive.framework */,
 				07BEC0792373BDD200A94E7A /* Zip.framework */,
@@ -278,6 +286,7 @@
 				07BEC0712373BA6700A94E7A /* example0.xmind in Resources */,
 				07BEC0662373B73D00A94E7A /* Main.storyboard in Resources */,
 				07BEC0632373B73D00A94E7A /* Preview Assets.xcassets in Resources */,
+				07E117352398A5EA0042C083 /* example1.xmind in Resources */,
 				07BEC0602373B73D00A94E7A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BEC0702373BA6700A94E7A /* example0.xmind in Resources */,
+				07E117342398A5EA0042C083 /* example1.xmind in Resources */,
 				07CABF5D236FF4FB00A50B58 /* LaunchScreen.storyboard in Resources */,
 				07CABF5A236FF4FB00A50B58 /* Assets.xcassets in Resources */,
 			);
@@ -304,12 +314,14 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/../Carthage/Build/Mac/ZipArchive.framework",
+				"$(SRCROOT)/../Carthage/Build/Mac/CryptoSwift.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CryptoSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -324,12 +336,14 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/../Carthage/Build/iOS/ZipArchive.framework",
+				"$(SRCROOT)/../Carthage/Build/iOS/CryptoSwift.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CryptoSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

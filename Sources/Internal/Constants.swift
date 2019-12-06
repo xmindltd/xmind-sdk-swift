@@ -1,8 +1,8 @@
 //
-//  PureJsonStructBox.swift
+//  Constants.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/14.
+//  Created by h on 2019/12/6.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,40 +26,8 @@
 
 import Foundation
 
-final class PureJsonStructBox<PureJsonStructModel: Codable>: FileModelBox {
-    
-    typealias Model = PureJsonStructModel
-    
-    var model: PureJsonStructModel {
-        didSet {
-            needSync = true
-        }
-    }
-    
-    func syncWithFileIfNeeded() {
-        if needSync {
-            if let data = try? JSONEncoder().encode(model) {
-                fileManager.createFile(atPath: path, contents: data, attributes: nil)
-            }
-            needSync = false
-        }
-    }
-    
-    private(set) var needSync: Bool = false
-    
-    private let fileManager: FileManager
-    private let path: String
-    
-    init(fileManager: FileManager, path: String, defaultValue: @autoclosure () -> PureJsonStructModel) {
-        self.fileManager = fileManager
-        self.path = path
-        
-        if let data = fileManager.contents(atPath: path), let model = try? JSONDecoder().decode(PureJsonStructModel.self, from: data) {
-            self.model = model
-        } else {
-            self.model = defaultValue()
-            self.needSync = true
-        }
-        
-    }
+struct Constants {
+    static let manifestPath = "manifest.json"
+    static let metadataPath = "metadata.json"
+    static let sheetsPath = "content.json"
 }

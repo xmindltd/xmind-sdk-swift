@@ -32,7 +32,7 @@ public class Sheet: Codable {
     
     public let `class`: String
     
-    public var title: String { didSet { setNeedSync() } }
+    public var title: String
     
     public let rootTopic: Topic
     
@@ -42,17 +42,6 @@ public class Sheet: Codable {
     
     public let theme: Theme
     
-    
-    weak var box: SheetsBox? = nil {
-        didSet {
-            rootTopic.box = box
-        }
-    }
-    
-    private func setNeedSync() {
-        box?.needSync = true
-    }
-    
     public init(title: String, rootTopic: Topic) {
         self.id = UUID().uuidString
         self.class = "sheet"
@@ -61,16 +50,6 @@ public class Sheet: Codable {
         self.topicPositioning = "fixed"
         self.relationships = nil
         self.theme = Theme.snowbrush
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case `class`
-        case title
-        case rootTopic
-        case topicPositioning
-        case relationships
-        case theme
     }
 
 }

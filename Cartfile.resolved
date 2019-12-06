@@ -1,1 +1,2 @@
 github "ZipArchive/ZipArchive" "v2.2.2"
+github "krzyzanowskim/CryptoSwift" "1.2.0"

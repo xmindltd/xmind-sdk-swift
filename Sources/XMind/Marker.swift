@@ -30,8 +30,8 @@ public struct Marker: Codable {
     let markerId: String
 }
 
-public extension Marker {
-    struct Priority {
+extension Marker {
+    public struct Priority {
         public static let p1 = Marker(markerId: "priority-1")
         public static let p2 = Marker(markerId: "priority-2")
         public static let p3 = Marker(markerId: "priority-3")
@@ -41,7 +41,7 @@ public extension Marker {
         public static let p7 = Marker(markerId: "priority-7")
     }
     
-    struct Smiley {
+    public struct Smiley {
         public static let laugh = Marker(markerId: "smiley-laugh")
         public static let smile = Marker(markerId: "smiley-smile")
         public static let cry = Marker(markerId: "smiley-cry")
@@ -51,7 +51,7 @@ public extension Marker {
         public static let embarrass = Marker(markerId: "smiley-embarrass")
     }
     
-    struct Task {
+    public struct Task {
         public static let start = Marker(markerId: "task-start")
         public static let oct = Marker(markerId: "task-oct")
         public static let quarter = Marker(markerId: "task-quarter")
@@ -60,7 +60,7 @@ public extension Marker {
         public static let pause = Marker(markerId: "task-pause")
     }
     
-    struct Flag {
+    public struct Flag {
         public static let red = Marker(markerId: "flag-red")
         public static let orange = Marker(markerId: "flag-orange")
         public static let darkBlue = Marker(markerId: "flag-dark-blue")
@@ -70,7 +70,7 @@ public extension Marker {
         public static let gray = Marker(markerId: "flag-gray")
     }
     
-    struct Star {
+    public struct Star {
         public static let red = Marker(markerId: "star-red")
         public static let orange = Marker(markerId: "star-orange")
         public static let darkBlue = Marker(markerId: "star-dark-blue")
@@ -80,7 +80,7 @@ public extension Marker {
         public static let gray = Marker(markerId: "star-gray")
     }
     
-    struct People {
+    public struct People {
         public static let red = Marker(markerId: "people-red")
         public static let orange = Marker(markerId: "people-orange")
         public static let darkBlue = Marker(markerId: "people-dark-blue")
@@ -90,7 +90,7 @@ public extension Marker {
         public static let gray = Marker(markerId: "people-gray")
     }
     
-    struct Arrow {
+    public struct Arrow {
         public static let left = Marker(markerId: "arrow-left")
         public static let right = Marker(markerId: "arrow-right")
         public static let up = Marker(markerId: "arrow-up")
@@ -100,7 +100,7 @@ public extension Marker {
         public static let refresh = Marker(markerId: "arrow-refresh")
     }
     
-    struct Month {
+    public struct Month {
         public static let jan = Marker(markerId: "month-jan")
         public static let feb = Marker(markerId: "month-feb")
         public static let mar = Marker(markerId: "month-mar")
@@ -115,7 +115,7 @@ public extension Marker {
         public static let dec = Marker(markerId: "month-dec")
     }
     
-    struct Week {
+    public struct Week {
         public static let sun = Marker(markerId: "week-sun")
         public static let mon = Marker(markerId: "week-mon")
         public static let tue = Marker(markerId: "week-tue")

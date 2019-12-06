@@ -1,8 +1,8 @@
 //
-//  FileModelBox.swift
+//  Manifest.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/14.
+//  Created by h on 2019/11/13.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,12 +26,43 @@
 
 import Foundation
 
-protocol FileModelBox: class {
-    associatedtype Model
+struct Manifest: Codable {
     
-    var model: Model { get }
+    private(set) var fileEntries: [String: Description] = [:]
     
-    func syncWithFileIfNeeded()
+    var passwordHint: String?
     
-    var needSync: Bool { get }
+    enum CodingKeys: String, CodingKey {
+        case fileEntries = "file-entries"
+        case passwordHint = "password-hint"
+    }
+    
+    mutating func insert(fileEntrie: String, description: Description = Description(encryptionData: nil)) {
+        fileEntries[fileEntrie] = description
+    }
+    
+    mutating func remove(fileEntrie: String) {
+        fileEntries.removeValue(forKey: fileEntrie)
+    }
+    
+    func encryptionData(fileEntrie: String) -> EncryptionData? {
+        return fileEntries[fileEntrie]?.encryptionData
+    }
+    
+    static func makeDefault() -> Manifest {
+        var manifest = Manifest()
+        manifest.insert(fileEntrie: Constants.sheetsPath)
+        manifest.insert(fileEntrie: Constants.metadataPath)
+        return manifest
+    }
+}
+
+extension Manifest {
+    struct Description: Codable {
+        public let encryptionData: EncryptionData?
+        
+        enum CodingKeys: String, CodingKey {
+            case encryptionData = "encryption-data"
+        }
+    }
 }

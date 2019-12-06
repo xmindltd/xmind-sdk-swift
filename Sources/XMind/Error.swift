@@ -26,10 +26,11 @@
 
 import Foundation
 
-enum XMindSDKError: Swift.Error {
+public enum Error: Swift.Error {
     case fileDamaged
     case fileNotFound
     case temporaryFolderCreationFailed
     case saveFailed
-    case noSourcePath
+    case fileIsEncrypted
+    case encryptionDataDamaged
 }

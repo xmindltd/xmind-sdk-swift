@@ -32,137 +32,185 @@ import ZipArchive
 /// You can open or new a workbook(xmind file).
 /// To opera a xmind file, workbook use a temporary storge at temporary path on the disk.
 /// The temporary content will be deleted while the workbook object deinited.
+/// If open an existing file, first you need call 'loadManifest()' , second call 'loadContent(password: String?)'.
+///
 public final class Workbook {
     
-    private lazy var manifestBox = PureJsonStructBox<Manifest>(fileManager: fileManager, path: "manifest.json", defaultValue: Manifest.makeDefault())
+    private let jsonDecoder = JSONDecoder()
+    private let jsonEncoder = JSONEncoder()
     
-    private lazy var metadataBox = PureJsonStructBox<Metadata>(fileManager: fileManager, path: "metadata.json", defaultValue: Metadata.makeDefault())
+    private let temporaryStorge: TemporaryStorge
     
-    private lazy var sheetsBox = SheetsBox(fileManager: fileManager, manifestBox: manifestBox, metadataBox: metadataBox)
-
-    private let fileManager: FileManager
+    private lazy var manifest: Manifest = Manifest.makeDefault()
     
-    private var sourcePath: String? = nil
-        
-    private init(temporaryPathFileManager: FileManager) {
-        fileManager = temporaryPathFileManager
+    private lazy var sheets: [Sheet] = [Sheet(title: "Sheet 1", rootTopic: Topic(title: "Topic 1"))]
+    
+    private lazy var metadata: Metadata = Metadata.makeDefault(activeSheetId: sheets.last?.id ?? "")
+    
+    private init(temporaryStorge: TemporaryStorge) {
+        self.temporaryStorge = temporaryStorge
     }
     
     deinit {
-        do {
-            try fileManager.removeItem(atPath: fileManager.currentDirectoryPath)
-        } catch {
-            print("XMindSDK: Fail to clean the temporary file. File path is \"\(fileManager.currentDirectoryPath)\".")
+        temporaryStorge.clear()
+    }
+}
+
+
+
+extension Workbook {
+    
+    public var passwordHint: String? {
+        get {
+            return manifest.passwordHint
+        }
+        set {
+            manifest.passwordHint = newValue
         }
     }
-
+    
+    /// Load the existing manifest.
+    /// Just  only can read passwordHint after called "loadManifest"
+    public func loadManifest() throws {
+        manifest = try readManifest()
+    }
+    
+    /// Load the existing content.
+    /// - Parameter password: Password of the file.
+    public func loadContent(password: String?) throws {
+        let crypto = makeCrypto(password: password)
+        metadata = try readModel(path: Constants.metadataPath, crypto: crypto)
+        sheets = try readModel(path: Constants.sheetsPath, crypto: crypto)
+    }
+    
+    public var allSheets: [Sheet] {
+        return sheets
+    }
+    
+    public func add(sheet: Sheet) {
+        sheets.removeAll { $0 == sheet }
+        metadata.activeSheetId = sheet.id
+        sheets.append(sheet)
+    }
+    
+    public func remove(sheet: Sheet) {
+        sheets.removeAll { $0 == sheet }
+        metadata.activeSheetId = sheets.last?.id ?? ""
+    }
+    
+    /// Save as a xmind file at the given path.
+    /// - Parameter path: Path will save to.
+    public func save(to path: String, password: String?) throws {
+        let crypto = makeCrypto(password: password)
+        try writeWorkbook(crypto: crypto)
+        if !SSZipArchive.createZipFile(atPath: path, withContentsOfDirectory: temporaryStorge.temporaryPath) {
+            throw Error.saveFailed
+        }
+    }
 }
 
-public extension Workbook {
-    var manifest: Manifest { manifestBox.model }
-    
-    var metadata: Metadata { metadataBox.model }
-    
-    var sheets: [Sheet] { sheetsBox.model }
-    
-    func addSheet(_ sheet: Sheet) {
-        sheetsBox.add(sheet: sheet)
-    }
-    
-    func removeSheet(_ sheet: Sheet) {
-        sheetsBox.remove(sheet: sheet)
-    }
-}
 
-
-public extension Workbook {
-    
-    private static func makeTemporaryDirectory() -> String {
-        return (NSTemporaryDirectory() as NSString).appendingPathComponent(UUID().uuidString)
-    }
+extension Workbook {
     
     /// Open a xmind file at the given file path.
     /// It will make a random temporary path by default.
     /// - Parameter filePath: The location of a xmind file which will be opened.
-    static func open(filePath: String) throws -> Workbook {
-        return try open(filePath: filePath, temporaryPath: makeTemporaryDirectory())
+    public static func open(filePath: String) throws -> Workbook {
+        return try open(filePath: filePath, temporaryPath: TemporaryStorge.makeTemporaryDirectory())
     }
     
     /// Open a xmind file at the given file path.
     /// - Parameters:
     ///   - filePath: The location of a xmind file which will be opened.
     ///   - temporaryPath: The temporary space that use to cache and opera temporary files.
-    static func open(filePath: String, temporaryPath: String) throws -> Workbook {
-        let fileManager = FileManager()
-        
-        guard fileManager.fileExists(atPath: filePath) else {
-            throw XMindSDKError.fileNotFound
+    public static func open(filePath: String, temporaryPath: String) throws -> Workbook {
+        guard FileManager.default.fileExists(atPath: filePath) else {
+            throw Error.fileNotFound
         }
         
         guard SSZipArchive.unzipFile(atPath: filePath, toDestination: temporaryPath) else {
-            throw XMindSDKError.fileDamaged
+            throw Error.fileDamaged
         }
         
-        if fileManager.changeCurrentDirectoryPath(temporaryPath) {
-            let workbook = Workbook(temporaryPathFileManager: fileManager)
-            workbook.sourcePath = filePath
-            return workbook
-        } else {
-            throw XMindSDKError.temporaryFolderCreationFailed
-        }
+        let temporaryStorge = try TemporaryStorge(temporaryPath: temporaryPath, createDirectory: false)
+        
+        return Workbook(temporaryStorge: temporaryStorge)
     }
     
     /// Create a new xmind file that is empty.
     /// - Parameter temporaryPath: The temporary space that use to cache and opera temporary files.
-    static func new(temporaryPath: String) throws -> Workbook {
-        let fileManager = FileManager()
+    public static func new(temporaryPath: String) throws -> Workbook {
         
-        do {
-            try fileManager.createDirectory(atPath: temporaryPath, withIntermediateDirectories: true, attributes: nil)
-        } catch {
-            throw XMindSDKError.temporaryFolderCreationFailed
-        }
+        let temporaryStorge = try TemporaryStorge(temporaryPath: temporaryPath, createDirectory: true)
         
-        if fileManager.changeCurrentDirectoryPath(temporaryPath) {
-            return Workbook(temporaryPathFileManager: fileManager)
-        } else {
-            throw XMindSDKError.temporaryFolderCreationFailed
-        }
+        return Workbook(temporaryStorge: temporaryStorge)
     }
     
     /// Create  a new xmind file that is empty.
     /// It will make a random temporary path by default.
-    static func new() throws -> Workbook {
-        return try new(temporaryPath: makeTemporaryDirectory())
+    public static func new() throws -> Workbook {
+        return try new(temporaryPath: TemporaryStorge.makeTemporaryDirectory())
     }
 }
 
-public extension Workbook {
+private extension Workbook {
     
-    private func syncTemporaryPath() {
-        // Because the sheetsBox may update other boxs. SheetsBox must sync first.
-        sheetsBox.syncWithFileIfNeeded()
-        manifestBox.syncWithFileIfNeeded()
-        metadataBox.syncWithFileIfNeeded()
-//        content_xmlBox.syncWithFileIfNeeded()
-    }
-    
-    /// Save as a xmind file at the given path.
-    /// - Parameter path: Path will save to.
-    func save(to path: String) throws {
-        syncTemporaryPath()
-        if !SSZipArchive.createZipFile(atPath: path, withContentsOfDirectory: fileManager.currentDirectoryPath) {
-            throw XMindSDKError.saveFailed
-        }
-    }
-    
-    /// Save to the original source path
-    /// If the workbook is new created, it has no source path. thus, a noSourcePath error of XMindSDKError will be thrown.
-    func save() throws {
-        if let path = sourcePath {
-            try save(to: path)
+    func makeCrypto(password: String?) -> Crypto? {
+        if let password = password {
+            return Crypto(password: password)
         } else {
-            throw XMindSDKError.noSourcePath
+            return nil
         }
+    }
+    
+    func readManifest() throws -> Manifest {
+        let data = try temporaryStorge.read(path: Constants.manifestPath)
+        return try jsonDecoder.decode(Manifest.self, from: data)
+    }
+    
+    func writeManifest(manifest: Manifest) throws {
+        let data = try jsonEncoder.encode(manifest)
+        try temporaryStorge.write(path: Constants.manifestPath, data: data)
+    }
+    
+    func readFile(path: String, crypto: Crypto?) throws -> Data {
+        let data = try temporaryStorge.read(path: path)
+        if let encryptionData = manifest.encryptionData(fileEntrie: path) {
+            if let crypto = crypto {
+                return try crypto.decrypt(data: data, encryptionData: encryptionData)
+            } else {
+                throw Error.fileIsEncrypted
+            }
+        } else {
+            return data
+        }
+        
+    }
+    
+    func readModel<T: Codable>(path: String, crypto: Crypto?) throws -> T {
+        let data = try readFile(path: path, crypto: crypto)
+        return try jsonDecoder.decode(T.self, from: data)
+    }
+    
+    func writeFile(path: String, data: Data, crypto: Crypto?) throws {
+        if let crypto = crypto {
+            let (encryptedData, encryptionData) = try crypto.encrypt(data: data)
+            try temporaryStorge.write(path: path, data: encryptedData)
+            manifest.insert(fileEntrie: path, description: Manifest.Description(encryptionData: encryptionData))
+        } else {
+            try temporaryStorge.write(path: path, data: data)
+            manifest.insert(fileEntrie: path)
+        }
+    }
+    
+    func writeModel<T: Codable>(path: String, model: T, crypto: Crypto?) throws {
+        let data = try jsonEncoder.encode(model)
+        try writeFile(path: path, data: data, crypto: crypto)
+    }
+    
+    func writeWorkbook(crypto: Crypto?) throws {
+        try writeModel(path: Constants.sheetsPath, model: sheets, crypto: crypto)
+        try writeModel(path: Constants.metadataPath, model: metadata, crypto: crypto)
+        try writeManifest(manifest: manifest)
     }
 }

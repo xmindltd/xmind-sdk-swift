@@ -29,6 +29,39 @@ import Foundation
 
 public class Topic: Codable {
     
+    /// The unique ID of this topic.
+    public let id: String
+    
+    public let `class`: String?
+    
+    public var title: String?
+    
+    public let structureClass: String?
+    
+    public let titleUnedited: Bool?
+    
+    public private(set) var markers: [Marker]?
+    
+    public private(set) var children: Children?
+    
+    private var image: Image?
+    
+    internal private(set) weak var superTopic: Topic? = nil
+    
+
+    public init(title: String) {
+        self.id = UUID().uuidString
+        self.class = "topic"
+        self.title = title
+        self.structureClass = "org.xmind.ui.map.unbalanced"
+        self.titleUnedited = true
+        self.markers = nil
+        self.children = nil
+    }
+    
+}
+
+extension Topic {
     public struct Children: Codable {
         public var attached: [Topic]?
         public var detached: [Topic]?
@@ -38,48 +71,12 @@ public class Topic: Codable {
             detached = []
         }
     }
+}
+
+extension Topic {
     
     struct Image: Codable {
         let src: String
-    }
-    
-    /// The unique ID of this topic.
-    public let id: String
-    
-    public let `class`: String?
-    
-    public var title: String? { didSet { setNeedSync() } }
-    
-    public let structureClass: String?
-    
-    public let titleUnedited: Bool
-    
-    public private(set) var markers: [Marker]?
-    
-    public private(set) var children: Children?
-    
-    private var image: Image?
-    
-    weak private(set) var superTopic: Topic? = nil
-    weak var box: SheetsBox? = nil {
-        didSet {
-            children?.attached?.forEach { $0.box = box }
-            children?.detached?.forEach { $0.box = box }
-        }
-    }
-    
-    private func setNeedSync() {
-        box?.needSync = true
-    }
-    
-    public init(title: String) {
-        self.id = UUID().uuidString
-        self.class = "topic"
-        self.title = title
-        self.structureClass = "org.xmind.ui.map.unbalanced"
-        self.titleUnedited = true
-        self.markers = nil
-        self.children = nil
     }
     
     enum CodingKeys: String, CodingKey {
@@ -94,13 +91,13 @@ public class Topic: Codable {
     }
 }
 
-public extension Topic {
+extension Topic {
     /// Add a topic to self.
     /// You cant add an ancestor topic, It do nothing.
     /// If the topic that to be added was alredy contained by self. it will not add twice.
     /// If the topic had a super topic, it will remove from origin super topic,then add to self.
     /// - Parameter topic: The topic to be added.
-    func addSubTopic(_ topic: Topic) {
+    public func addSubTopic(_ topic: Topic) {
         
         var _topic: Topic? = self
         
@@ -128,16 +125,13 @@ public extension Topic {
         topic.removeFromSuperTopic()
         children!.attached!.append(topic)
         topic.superTopic = self
-        topic.box = box
-        
-        setNeedSync()
     }
     
     /// A convenience function for add a topic.
     /// The behave is same as "addSubTopic(_ topic: Topic)".
     /// The returned topic is the new created topic.
     /// - Parameter title: Title of the new topic.
-    func addSubTopic(_ title: String) -> Topic {
+    public func addSubTopic(_ title: String) -> Topic {
         let topic = Topic(title: title)
         addSubTopic(topic)
         return topic
@@ -145,42 +139,35 @@ public extension Topic {
     
     /// Remove a sub topic.
     /// - Parameter topic: The sub topic.
-    func removeSubTopic(_ topic: Topic) {
+    public func removeSubTopic(_ topic: Topic) {
         
         guard let droped = children?.attached?.drop(while: { $0 === topic }) else { return }
         
         for topic in droped {
             topic.superTopic = nil
-            topic.box = nil
         }
-        
-        setNeedSync()
     }
     
     /// If the topic has a super topic, it will remove from the super topic.
-    func removeFromSuperTopic() {
+    public func removeFromSuperTopic() {
         superTopic?.removeSubTopic(self)
     }
     
     /// Add a marker to the topic, The same class marker can only add once.
     /// - Parameter marker: Marker to be added.
-    func addMarker(_ marker: Marker) {
+    public func addMarker(_ marker: Marker) {
         if markers == nil {
             markers = [marker]
         } else {
             markers!.removeAll { $0.isSameGroup(with: marker) }
             markers!.append(marker)
         }
-        
-        setNeedSync()
     }
     
     /// Remove a marker.
     /// - Parameter marker: Marker to be removed.
-    func removeMarker(_ marker: Marker) {
+    public func removeMarker(_ marker: Marker) {
         markers?.removeAll { $0 == marker }
-        
-        setNeedSync()
     }
 }
 

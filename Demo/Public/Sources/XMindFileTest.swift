@@ -28,40 +28,49 @@
 import Foundation
 import XMindSDK
 
-
 func XMindFileTest() {
-    guard let filePath = Bundle.main.path(forResource: "example0", ofType: "xmind") else { return }
+    guard let filePath = Bundle.main.path(forResource: "example1", ofType: "xmind") else { return }
     testFile(filePath: filePath)
 }
-
 
 private func testFile(filePath: String) {
     
     do {
-        let wb = try Workbook.new()
+        
+        let wb = try Workbook.open(filePath: filePath)
+        try wb.loadManifest()
+        try wb.loadContent(password: "123456")
         
         
-        let root = wb.sheets.first!.rootTopic
         
-        let sub1 = root.addSubTopic("Sub Topic 1")
-        let sub2 = root.addSubTopic("Sub Topic 2")
-        let sub3 = root.addSubTopic("Sub Topic 3")
+        let s = wb.allSheets
         
-        _ = sub3.addSubTopic("Topic 4")
-        _ = sub3.addSubTopic("Topic 5")
-        
-        sub2.addMarker(Marker.Arrow.refresh)
-        
-        root.addMarker(Marker.Flag.darkBlue)
+        print(s)
 
-        sub1.addMarker(Marker.Priority.p2)
+//        let wb = try Workbook.new()
         
-                
-        let file = NSTemporaryDirectory() + "test.xmind"
         
-        try wb.save(to: file)
+//        let root = wb.sheets.first!.rootTopic
         
-        print(file)
+//        let sub1 = root.addSubTopic("Sub Topic 1")
+//        let sub2 = root.addSubTopic("Sub Topic 2")
+//        let sub3 = root.addSubTopic("Sub Topic 3")
+//
+//        _ = sub3.addSubTopic("Topic 4")
+//        _ = sub3.addSubTopic("Topic 5")
+//
+//        sub2.addMarker(Marker.Arrow.refresh)
+//
+//        root.addMarker(Marker.Flag.darkBlue)
+//
+//        sub1.addMarker(Marker.Priority.p2)
+//
+//
+//        let file = NSTemporaryDirectory() + "test.xmind"
+//
+//        try wb.save(to: file)
+        
+//        print(file)
         
     } catch let e {
         print(e)

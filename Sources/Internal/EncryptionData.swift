@@ -1,8 +1,8 @@
 //
-//  Manifest.swift
+//  EncryptionData.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/13.
+//  Created by h on 2019/12/5.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,43 +26,21 @@
 
 import Foundation
 
-public struct Manifest: Codable, CustomStringConvertible {
+struct EncryptionData: Codable {
+    let iterationCount: Int
+    let size: Int
     
-    private var _fileEntries: [String: Empty] = [:]
-    
-    private struct Empty: Codable {
-        
-    }
-    
-    public init(fileEntries: String...) {
-        fileEntries.forEach {
-            insert(fileEntrie: $0)
-        }
-    }
+    let algorithmName: String
+    let keyDerivationName: String
+    let salt: String
+    let iv: String
     
     enum CodingKeys: String, CodingKey {
-        case _fileEntries = "file-entries"
+        case iterationCount = "iteration-count"
+        case size
+        case algorithmName = "algorithm-name"
+        case keyDerivationName = "key-derivation-name"
+        case salt
+        case iv
     }
-    
-    public var fileEntries: Set<String> {
-        Set(_fileEntries.keys)
-    }
-    
-    public var description: String {
-        return fileEntries.description
-    }
-    
-    public mutating func insert(fileEntrie: String) {
-        _fileEntries[fileEntrie] = Empty()
-    }
-    
-    public mutating func remove(fileEntrie: String) {
-        _fileEntries.removeValue(forKey: fileEntrie)
-    }
-    
-    
-    static func makeDefault() -> Manifest {
-        return Manifest(fileEntries: "content.json", "metadata.json")
-    }
-    
 }
