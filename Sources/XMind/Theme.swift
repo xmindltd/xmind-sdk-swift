@@ -34,7 +34,7 @@ public struct Theme: Codable {
         public let properties: [String: String]?
     }
     
-    public let id: String
+    public let id: String?
     
     public let importantTopic: Item?
     public let minorTopic: Item?

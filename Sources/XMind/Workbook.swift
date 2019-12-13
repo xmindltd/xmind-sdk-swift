@@ -77,7 +77,7 @@ extension Workbook {
     
     /// Load the existing content.
     /// - Parameter password: Password of the file.
-    public func loadContent(password: String?) throws {
+    public func loadContent(password: String? = nil) throws {
         let crypto = makeCrypto(password: password)
         metadata = try readModel(path: Constants.metadataPath, crypto: crypto)
         sheets = try readModel(path: Constants.sheetsPath, crypto: crypto)
@@ -100,7 +100,7 @@ extension Workbook {
     
     /// Save as a xmind file at the given path.
     /// - Parameter path: Path will save to.
-    public func save(to path: String, password: String?) throws {
+    public func save(to path: String, password: String? = nil) throws {
         let crypto = makeCrypto(password: password)
         try writeWorkbook(crypto: crypto)
         if !SSZipArchive.createZipFile(atPath: path, withContentsOfDirectory: temporaryStorge.temporaryPath) {
