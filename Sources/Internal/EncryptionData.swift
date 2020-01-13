@@ -1,8 +1,8 @@
 //
-//  Sheet.swift
+//  EncryptionData.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/8.
+//  Created by h on 2019/12/5.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,19 +26,21 @@
 
 import Foundation
 
-public struct Sheet: Codable {
-    public let id: String
+struct EncryptionData: Codable {
+    let iterationCount: Int
+    let size: Int
     
-    public let `class`: String
+    let algorithmName: String
+    let keyDerivationName: String
+    let salt: String
+    let iv: String
     
-    public let title: String
-    
-    public let rootTopic: Topic?
-    
-    public let topicPositioning: String
-    
-    public let relationships: [Relationship]?
-    
-    public let theme: Theme
-
+    enum CodingKeys: String, CodingKey {
+        case iterationCount = "iteration-count"
+        case size
+        case algorithmName = "algorithm-name"
+        case keyDerivationName = "key-derivation-name"
+        case salt
+        case iv
+    }
 }

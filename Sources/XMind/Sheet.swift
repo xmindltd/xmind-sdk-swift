@@ -1,8 +1,8 @@
 //
-//  Manifest.swift
+//  Sheet.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/13.
+//  Created by h on 2019/11/8.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,36 +26,36 @@
 
 import Foundation
 
-public final class Manifest: Codable, CustomStringConvertible {
+public class Sheet: Codable {
     
-    private var _fileEntries: [String: Empty]
+    public let id: String
     
-    private struct Empty: Codable {
-        
+    public let `class`: String
+    
+    public var title: String
+    
+    public let rootTopic: Topic
+    
+    public let topicPositioning: String
+    
+    public let relationships: [Relationship]?
+    
+    public let theme: Theme
+    
+    public init(title: String, rootTopic: Topic) {
+        self.id = UUID().uuidString
+        self.class = "sheet"
+        self.title = title
+        self.rootTopic = rootTopic
+        self.topicPositioning = "fixed"
+        self.relationships = nil
+        self.theme = Theme.snowbrush
     }
-    
-    public init() {
-        _fileEntries = [:]
+
+}
+
+extension Sheet: Equatable {
+    public static func == (lhs: Sheet, rhs: Sheet) -> Bool {
+        return lhs === rhs
     }
-    
-    enum CodingKeys: String, CodingKey {
-        case _fileEntries = "file-entries"
-    }
-    
-    public var fileEntries: Set<String> {
-        Set(_fileEntries.keys)
-    }
-    
-    public var description: String {
-        return fileEntries.description
-    }
-    
-    public func insert(fileEntrie: String) {
-        _fileEntries[fileEntrie] = Empty()
-    }
-    
-    public func remove(fileEntrie: String) {
-        _fileEntries.removeValue(forKey: fileEntrie)
-    }
-    
 }

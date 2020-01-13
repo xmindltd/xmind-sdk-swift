@@ -26,20 +26,19 @@
 
 import Foundation
 
-public struct Metadata: Codable {
+struct Metadata: Codable {
     
-    public struct Creator: Codable {
-        public let name: String
-        public let version: String
+    /// The creator contains the creator's name and the version of the creator.
+    struct Creator: Codable {
+        let name: String
+        let version: String
     }
     
-    public var activeSheetId: String
+    var activeSheetId: String
     
-    public let creator: Creator
+    let creator: Creator
     
-    init() {
-        creator = Creator(name: "XMindSDK", version: "1.0")
-        activeSheetId = ""
+    static func makeDefault(activeSheetId: String) -> Metadata {
+        return Metadata(activeSheetId: activeSheetId, creator: Creator(name: "XMindSDK", version: "1.0"))
     }
-    
 }

@@ -1,5 +1,5 @@
 //
-//  Marker.swift
+//  Relationship.swift
 //  XMindSDK
 //
 //  Created by h on 2019/11/13.
@@ -26,6 +26,14 @@
 
 import Foundation
 
-public struct Marker: Codable {
-    let markerId: String
+public struct Relationship: Codable {
+
+    public let id: String
+    
+    public let end1Id: String
+    public let end2Id: String
+    
+    public let titleUnedited: Bool
+    
+    public let controlPoints: [String: Point]
 }

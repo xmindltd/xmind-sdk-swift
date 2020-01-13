@@ -1,8 +1,8 @@
 //
-//  Relationship.swift
+//  TemporaryStorge.swift
 //  XMindSDK
 //
-//  Created by h on 2019/11/13.
+//  Created by h on 2019/12/5.
 //
 //  Copyright © 2019 XMind.
 //
@@ -26,15 +26,39 @@
 
 import Foundation
 
-public struct Relationship: Codable {
-
-    public let id: String
+class TemporaryStorge {
     
-    public let end1Id: String
-    public let end2Id: String
+    private let fileManager = FileManager()
+    let temporaryPath: String
     
-    public let titleUnedited: Bool
+    init(temporaryPath: String) {
+        self.temporaryPath = temporaryPath
+    }
     
-    public let controlPoints: [String: Point]
+    private func makeAbsolutelyPath(path: String) -> String {
+        return (temporaryPath as NSString).appendingPathComponent(path)
+    }
     
+    func read(path: String) throws -> Data {
+        if let data = fileManager.contents(atPath: makeAbsolutelyPath(path: path)) {
+            return data
+        }
+        throw Error.fileNotFound
+    }
+    
+    func write(path: String, data: Data) throws {
+        fileManager.createFile(atPath: makeAbsolutelyPath(path: path), contents: data, attributes: nil)
+    }
+    
+    func clear() {
+        do {
+            try fileManager.removeItem(atPath: temporaryPath)
+        } catch {
+            print("XMindSDK: Fail to clean the temporary file. The temporary directory is \"\(temporaryPath)\".")
+        }
+    }
+    
+    static func makeTemporaryDirectory() -> String {
+        return (NSTemporaryDirectory() as NSString).appendingPathComponent(UUID().uuidString)
+    }
 }

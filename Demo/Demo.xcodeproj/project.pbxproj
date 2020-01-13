@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		076F370923740AE600565A92 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076F370823740AE500565A92 /* ZipArchive.framework */; };
+		0705DF1F23CC421F00BABCEC /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0705DF1E23CC421F00BABCEC /* CryptoSwift.framework */; };
+		0705DF2223CC422400BABCEC /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0705DF2123CC422400BABCEC /* ZIPFoundation.framework */; };
+		0705DF2423CC423400BABCEC /* XMindSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CABF62236FF51B00A50B58 /* XMindSDK.framework */; };
+		0705DF2523CC423400BABCEC /* XMindSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07CABF62236FF51B00A50B58 /* XMindSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0777280423CC425200EDE052 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0777280323CC425200EDE052 /* ZIPFoundation.framework */; };
 		077E01B3237505E1000016BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E01B2237505E1000016BB /* ContentView.swift */; };
 		077E01B4237505E1000016BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077E01B2237505E1000016BB /* ContentView.swift */; };
 		07BEC05C2373B73C00A94E7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEC05B2373B73C00A94E7A /* AppDelegate.swift */; };
@@ -16,17 +20,15 @@
 		07BEC0662373B73D00A94E7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BEC0642373B73D00A94E7A /* Main.storyboard */; };
 		07BEC0702373BA6700A94E7A /* example0.xmind in Resources */ = {isa = PBXBuildFile; fileRef = 07BEC06F2373BA6700A94E7A /* example0.xmind */; };
 		07BEC0712373BA6700A94E7A /* example0.xmind in Resources */ = {isa = PBXBuildFile; fileRef = 07BEC06F2373BA6700A94E7A /* example0.xmind */; };
-		07BEC0732373BA8E00A94E7A /* XMindFileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEC0722373BA8E00A94E7A /* XMindFileTest.swift */; };
-		07BEC0742373BA8E00A94E7A /* XMindFileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEC0722373BA8E00A94E7A /* XMindFileTest.swift */; };
 		07BEC0762373BD5500A94E7A /* XMindSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BEC0752373BD5500A94E7A /* XMindSDK.framework */; };
 		07BEC0772373BD5500A94E7A /* XMindSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07BEC0752373BD5500A94E7A /* XMindSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		07BEC0842374095800A94E7A /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BEC0832374095800A94E7A /* ZipArchive.framework */; };
 		07CABF51236FF4FB00A50B58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CABF50236FF4FB00A50B58 /* AppDelegate.swift */; };
 		07CABF53236FF4FB00A50B58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CABF52236FF4FB00A50B58 /* SceneDelegate.swift */; };
 		07CABF5A236FF4FB00A50B58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07CABF59236FF4FB00A50B58 /* Assets.xcassets */; };
 		07CABF5D236FF4FB00A50B58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CABF5B236FF4FB00A50B58 /* LaunchScreen.storyboard */; };
-		07CABF66236FF59400A50B58 /* XMindSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CABF62236FF51B00A50B58 /* XMindSDK.framework */; };
-		07CABF67236FF59400A50B58 /* XMindSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07CABF62236FF51B00A50B58 /* XMindSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07E117342398A5EA0042C083 /* example1.xmind in Resources */ = {isa = PBXBuildFile; fileRef = 07E117332398A5EA0042C083 /* example1.xmind */; };
+		07E117352398A5EA0042C083 /* example1.xmind in Resources */ = {isa = PBXBuildFile; fileRef = 07E117332398A5EA0042C083 /* example1.xmind */; };
+		07E1173F2398E78D0042C083 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E1173E2398E78D0042C083 /* CryptoSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +49,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				07CABF67236FF59400A50B58 /* XMindSDK.framework in Embed Frameworks */,
+				0705DF2523CC423400BABCEC /* XMindSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,7 +57,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0705DF1E23CC421F00BABCEC /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		0705DF2123CC422400BABCEC /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZIPFoundation.framework; path = ../Carthage/Build/iOS/ZIPFoundation.framework; sourceTree = "<group>"; };
 		076F370823740AE500565A92 /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZipArchive.framework; path = ../Carthage/Build/Mac/ZipArchive.framework; sourceTree = "<group>"; };
+		0777280323CC425200EDE052 /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZIPFoundation.framework; path = ../Carthage/Build/Mac/ZIPFoundation.framework; sourceTree = "<group>"; };
 		077E01B2237505E1000016BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		07BEC0592373B73C00A94E7A /* XMindSDK-Demo-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XMindSDK-Demo-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BEC05B2373B73C00A94E7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +70,6 @@
 		07BEC0672373B73D00A94E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BEC0682373B73D00A94E7A /* XMindSDK_Demo_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XMindSDK_Demo_macOS.entitlements; sourceTree = "<group>"; };
 		07BEC06F2373BA6700A94E7A /* example0.xmind */ = {isa = PBXFileReference; lastKnownFileType = file; path = example0.xmind; sourceTree = "<group>"; };
-		07BEC0722373BA8E00A94E7A /* XMindFileTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMindFileTest.swift; sourceTree = "<group>"; };
 		07BEC0752373BD5500A94E7A /* XMindSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMindSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BEC0792373BDD200A94E7A /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = ../Carthage/Build/Mac/Zip.framework; sourceTree = "<group>"; };
 		07BEC07C2373BDDB00A94E7A /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = ../Carthage/Build/iOS/Zip.framework; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 		07CABF5C236FF4FB00A50B58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07CABF5E236FF4FB00A50B58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07CABF62236FF51B00A50B58 /* XMindSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMindSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07E117332398A5EA0042C083 /* example1.xmind */ = {isa = PBXFileReference; lastKnownFileType = file; path = example1.xmind; sourceTree = "<group>"; };
+		07E1173E2398E78D0042C083 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = ../Carthage/Build/Mac/CryptoSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +90,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E1173F2398E78D0042C083 /* CryptoSwift.framework in Frameworks */,
 				07BEC0762373BD5500A94E7A /* XMindSDK.framework in Frameworks */,
-				076F370923740AE600565A92 /* ZipArchive.framework in Frameworks */,
+				0777280423CC425200EDE052 /* ZIPFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,8 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07BEC0842374095800A94E7A /* ZipArchive.framework in Frameworks */,
-				07CABF66236FF59400A50B58 /* XMindSDK.framework in Frameworks */,
+				0705DF1F23CC421F00BABCEC /* CryptoSwift.framework in Frameworks */,
+				0705DF2423CC423400BABCEC /* XMindSDK.framework in Frameworks */,
+				0705DF2223CC422400BABCEC /* ZIPFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +142,7 @@
 		07BEC06D2373BA3700A94E7A /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				07E117332398A5EA0042C083 /* example1.xmind */,
 				07BEC06F2373BA6700A94E7A /* example0.xmind */,
 			);
 			path = Examples;
@@ -142,7 +151,6 @@
 		07BEC06E2373BA4000A94E7A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				07BEC0722373BA8E00A94E7A /* XMindFileTest.swift */,
 				077E01B2237505E1000016BB /* ContentView.swift */,
 			);
 			path = Sources;
@@ -171,6 +179,10 @@
 		07CABF2D236FF19700A50B58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0705DF2123CC422400BABCEC /* ZIPFoundation.framework */,
+				0777280323CC425200EDE052 /* ZIPFoundation.framework */,
+				07E1173E2398E78D0042C083 /* CryptoSwift.framework */,
+				0705DF1E23CC421F00BABCEC /* CryptoSwift.framework */,
 				07BEC0832374095800A94E7A /* ZipArchive.framework */,
 				076F370823740AE500565A92 /* ZipArchive.framework */,
 				07BEC0792373BDD200A94E7A /* Zip.framework */,
@@ -278,6 +290,7 @@
 				07BEC0712373BA6700A94E7A /* example0.xmind in Resources */,
 				07BEC0662373B73D00A94E7A /* Main.storyboard in Resources */,
 				07BEC0632373B73D00A94E7A /* Preview Assets.xcassets in Resources */,
+				07E117352398A5EA0042C083 /* example1.xmind in Resources */,
 				07BEC0602373B73D00A94E7A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BEC0702373BA6700A94E7A /* example0.xmind in Resources */,
+				07E117342398A5EA0042C083 /* example1.xmind in Resources */,
 				07CABF5D236FF4FB00A50B58 /* LaunchScreen.storyboard in Resources */,
 				07CABF5A236FF4FB00A50B58 /* Assets.xcassets in Resources */,
 			);
@@ -303,13 +317,15 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/Mac/ZipArchive.framework",
+				"$(SRCROOT)/../Carthage/Build/Mac/ZIPFoundation.framework",
+				"$(SRCROOT)/../Carthage/Build/Mac/CryptoSwift.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZIPFoundation.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CryptoSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -323,13 +339,15 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/iOS/ZipArchive.framework",
+				"$(SRCROOT)/../Carthage/Build/iOS/ZIPFoundation.framework",
+				"$(SRCROOT)/../Carthage/Build/iOS/CryptoSwift.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZipArchive.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZIPFoundation.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CryptoSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -342,7 +360,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07BEC0742373BA8E00A94E7A /* XMindFileTest.swift in Sources */,
 				077E01B4237505E1000016BB /* ContentView.swift in Sources */,
 				07BEC05C2373B73C00A94E7A /* AppDelegate.swift in Sources */,
 			);
@@ -354,7 +371,6 @@
 			files = (
 				077E01B3237505E1000016BB /* ContentView.swift in Sources */,
 				07CABF51236FF4FB00A50B58 /* AppDelegate.swift in Sources */,
-				07BEC0732373BA8E00A94E7A /* XMindFileTest.swift in Sources */,
 				07CABF53236FF4FB00A50B58 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

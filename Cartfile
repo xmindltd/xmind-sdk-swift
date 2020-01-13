@@ -1,1 +1,2 @@
-github "ZipArchive/ZipArchive" ~> 2.2
+github "weichsel/ZIPFoundation" ~> 0.9
+github "krzyzanowskim/CryptoSwift" ~> 1.3
