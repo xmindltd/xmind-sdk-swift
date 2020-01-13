@@ -1,5 +1,7 @@
 # XMind SDK in Swift
 
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)[![Language](https://img.shields.io/badge/language-Swift-orange.svg)]()
+
 This SDK enables you to create and modify xmind(`.xmind`) files, and it's written in swift.
 
 Supported Platforms:
@@ -54,6 +56,22 @@ sub1.addMarker(Marker.Priority.p2)
 
 try wb.save(to: filePath, password: "123456")
 ```
+
+
+
+### installation
+
+- Carthage
+
+  ```
+  github ""
+  ```
+
+- Swift Package Manager
+
+  ```
+  .package(url: "", .upToNextMinor(from: "1.0"))
+  ```
 
 
 
