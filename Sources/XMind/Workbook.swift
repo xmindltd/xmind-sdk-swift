@@ -26,7 +26,7 @@
 
 
 import Foundation
-import ZipArchive
+import ZIPFoundation
 
 /// A workbook is as a xmind file.
 /// You can open or new a workbook(xmind file).
@@ -89,23 +89,20 @@ extension Workbook {
     
     public func add(sheet: Sheet) {
         sheets.removeAll { $0 == sheet }
-        metadata.activeSheetId = sheet.id
         sheets.append(sheet)
     }
     
     public func remove(sheet: Sheet) {
         sheets.removeAll { $0 == sheet }
-        metadata.activeSheetId = sheets.last?.id ?? ""
     }
     
     /// Save as a xmind file at the given path.
+    /// If a file already exists with this path, This method will throw an error that indicates this csae.
     /// - Parameter path: Path will save to.
     public func save(to path: String, password: String? = nil) throws {
         let crypto = makeCrypto(password: password)
         try writeWorkbook(crypto: crypto)
-        if !SSZipArchive.createZipFile(atPath: path, withContentsOfDirectory: temporaryStorge.temporaryPath) {
-            throw Error.saveFailed
-        }
+        try FileManager.default.zipItem(at: URL(fileURLWithPath: temporaryStorge.temporaryPath), to: URL(fileURLWithPath: path), shouldKeepParent: false)
     }
 }
 
@@ -128,11 +125,11 @@ extension Workbook {
             throw Error.fileNotFound
         }
         
-        guard SSZipArchive.unzipFile(atPath: filePath, toDestination: temporaryPath) else {
-            throw Error.fileDamaged
-        }
+        try FileManager.default.createDirectory(atPath: temporaryPath, withIntermediateDirectories: true, attributes: nil)
         
-        let temporaryStorge = try TemporaryStorge(temporaryPath: temporaryPath, createDirectory: false)
+        try FileManager.default.unzipItem(at: URL(fileURLWithPath: filePath), to: URL(fileURLWithPath: temporaryPath))
+        
+        let temporaryStorge = TemporaryStorge(temporaryPath: temporaryPath)
         
         return Workbook(temporaryStorge: temporaryStorge)
     }
@@ -141,7 +138,9 @@ extension Workbook {
     /// - Parameter temporaryPath: The temporary space that use to cache and opera temporary files.
     public static func new(temporaryPath: String) throws -> Workbook {
         
-        let temporaryStorge = try TemporaryStorge(temporaryPath: temporaryPath, createDirectory: true)
+        try FileManager.default.createDirectory(atPath: temporaryPath, withIntermediateDirectories: true, attributes: nil)
+        
+        let temporaryStorge = TemporaryStorge(temporaryPath: temporaryPath)
         
         return Workbook(temporaryStorge: temporaryStorge)
     }
@@ -175,7 +174,7 @@ private extension Workbook {
     
     func readFile(path: String, crypto: Crypto?) throws -> Data {
         let data = try temporaryStorge.read(path: path)
-        if let encryptionData = manifest.encryptionData(fileEntrie: path) {
+        if let encryptionData = manifest.encryptionData(fileEntry: path) {
             if let crypto = crypto {
                 return try crypto.decrypt(data: data, encryptionData: encryptionData)
             } else {
@@ -196,10 +195,10 @@ private extension Workbook {
         if let crypto = crypto {
             let (encryptedData, encryptionData) = try crypto.encrypt(data: data)
             try temporaryStorge.write(path: path, data: encryptedData)
-            manifest.insert(fileEntrie: path, description: Manifest.Description(encryptionData: encryptionData))
+            manifest.insert(fileEntry: path, description: Manifest.Description(encryptionData: encryptionData))
         } else {
             try temporaryStorge.write(path: path, data: data)
-            manifest.insert(fileEntrie: path)
+            manifest.insert(fileEntry: path)
         }
     }
     

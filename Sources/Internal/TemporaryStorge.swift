@@ -31,16 +31,8 @@ class TemporaryStorge {
     private let fileManager = FileManager()
     let temporaryPath: String
     
-    init(temporaryPath: String, createDirectory: Bool) throws {
+    init(temporaryPath: String) {
         self.temporaryPath = temporaryPath
-        
-        if createDirectory {
-            do {
-                try fileManager.createDirectory(atPath: temporaryPath, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                throw Error.temporaryFolderCreationFailed
-            }
-        }
     }
     
     private func makeAbsolutelyPath(path: String) -> String {

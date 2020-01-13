@@ -26,11 +26,78 @@
 
 
 import SwiftUI
+import XMindSDK
+
+///
+/// The example0.xmind file has no password.
+/// The password of example1.xmind file is "123456".
+
+struct Row: Identifiable {
+    let id: String
+    let title: String
+    let indentLevel: Int
+}
+
+struct TopicCell: View {
+    
+    let row: Row
+    
+    private var _title: String {
+        return "| " + String(repeating: " - ", count: row.indentLevel) + row.title
+    }
+    
+    var body: some View {
+        Text(_title)
+    }
+}
 
 struct ContentView: View {
+    
+    private func makeRows(from topic: Topic, indentLevel: Int) -> [Row] {
+        var rows = [Row]()
+        rows.append(Row(id: topic.id, title: topic.title ?? "", indentLevel: indentLevel))
+        if let attachedChildren = topic.children?.attached {
+            for topic in attachedChildren {
+                rows.append(contentsOf: makeRows(from: topic, indentLevel: indentLevel + 1))
+            }
+        }
+        return rows
+    }
+    
+    private func makeRows(from sheet: Sheet) -> [Row] {
+        var rows = [Row]()
+        rows.append(Row(id: sheet.id, title: sheet.title, indentLevel: 0))
+        rows.append(contentsOf: makeRows(from: sheet.rootTopic, indentLevel: 1))
+        return rows
+    }
+
+    private func makeRows() -> [Row] {
+        guard let filePath = Bundle.main.path(forResource: "example0", ofType: "xmind") else { return [] }
+        
+        do {
+            let wb = try Workbook.open(filePath: filePath)
+            try wb.loadManifest()
+            try wb.loadContent()
+            
+            var rows = [Row]()
+            
+            for sheet in wb.allSheets {
+                rows.append(contentsOf: makeRows(from: sheet))
+            }
+            
+            return rows
+            
+        } catch let error {
+            print(error)
+            return []
+        }
+    }
+    
+    
     var body: some View {
-        Text("XMindSDK")
-            .frame(maxWidth: .infinity, maxHeight: .infinity).onAppear(perform: XMindFileTest)
+        List(makeRows()) {
+            TopicCell(row: $0)
+        }
     }
 }
 

@@ -28,6 +28,7 @@ import Foundation
 
 struct Metadata: Codable {
     
+    /// The creator contains the creator's name and the version of the creator.
     struct Creator: Codable {
         let name: String
         let version: String

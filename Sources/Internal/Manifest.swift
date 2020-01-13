@@ -26,10 +26,14 @@
 
 import Foundation
 
+/// A file entry indicates a file in this xmind file bundle. And some file have they own description which contains some information which mainly indicates encryption data now,
+/// Manifest also contains the password hint. If you wanna access it form an existing file. you must call `loadManifest` before accessing.
 struct Manifest: Codable {
     
+    /// All the file entries.
     private(set) var fileEntries: [String: Description] = [:]
     
+    /// The password hint.
     var passwordHint: String?
     
     enum CodingKeys: String, CodingKey {
@@ -37,22 +41,28 @@ struct Manifest: Codable {
         case passwordHint = "password-hint"
     }
     
-    mutating func insert(fileEntrie: String, description: Description = Description(encryptionData: nil)) {
-        fileEntries[fileEntrie] = description
+    /// Insert a file entry with the file name and it's description.
+    /// - Parameters:
+    ///   - fileEntry: Name of the file entry.
+    ///   - description: Description of this file entry.
+    mutating func insert(fileEntry: String, description: Description = Description(encryptionData: nil)) {
+        fileEntries[fileEntry] = description
     }
     
-    mutating func remove(fileEntrie: String) {
-        fileEntries.removeValue(forKey: fileEntrie)
+    /// Remove a file entry by name.
+    /// - Parameter fileEntry: Name of the file entry.
+    mutating func remove(fileEntry: String) {
+        fileEntries.removeValue(forKey: fileEntry)
     }
     
-    func encryptionData(fileEntrie: String) -> EncryptionData? {
-        return fileEntries[fileEntrie]?.encryptionData
+    func encryptionData(fileEntry: String) -> EncryptionData? {
+        return fileEntries[fileEntry]?.encryptionData
     }
     
     static func makeDefault() -> Manifest {
         var manifest = Manifest()
-        manifest.insert(fileEntrie: Constants.sheetsPath)
-        manifest.insert(fileEntrie: Constants.metadataPath)
+        manifest.insert(fileEntry: Constants.sheetsPath)
+        manifest.insert(fileEntry: Constants.metadataPath)
         return manifest
     }
 }

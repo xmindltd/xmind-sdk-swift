@@ -27,7 +27,7 @@
 import Foundation
 
 public class Sheet: Codable {
-    /// 
+    
     public let id: String
     
     public let `class`: String

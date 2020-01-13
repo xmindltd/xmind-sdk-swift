@@ -27,10 +27,7 @@
 import Foundation
 
 public enum Error: Swift.Error {
-    case fileDamaged
     case fileNotFound
-    case temporaryFolderCreationFailed
-    case saveFailed
     case fileIsEncrypted
     case encryptionDataDamaged
 }
