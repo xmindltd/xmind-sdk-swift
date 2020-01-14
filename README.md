@@ -59,7 +59,7 @@ try wb.save(to: filePath, password: "123456")
 
 
 
-### installation
+### Installation
 
 - Carthage
 
