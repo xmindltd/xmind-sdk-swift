@@ -6,12 +6,12 @@ This SDK enables you to create and modify xmind(`.xmind`) files, and it's writte
 
 Supported Platforms:
 
-- iOS
-- macOS
+- iOS 9+
+- macOS 10.11+
 
 ## Structure of XMind files
 
-XMind file is a zip file which contains several components, including manifest, metadata, sheets and resources
+XMind file is a zip file which contains several components, including manifest, metadata, sheets and resources.
 
 Resources contains all the resources of this xmind file that like images.
 
@@ -37,7 +37,7 @@ import XMindSDK
 ...
 ...
 
-let wb = try Workbook.open(filePath: filePath)// This file path which contains a existing xmind file.
+let wb = try Workbook.open(filePath: filePath)// This file path which contains an existing xmind file.
 try wb.loadManifest()
 try wb.loadContent(password: "123456")
 
@@ -64,13 +64,13 @@ try wb.save(to: filePath, password: "123456")
 - Carthage
 
   ```
-  github ""
+  github "xmindltd/xmind-sdk-swift"
   ```
 
 - Swift Package Manager
 
   ```
-  .package(url: "", .upToNextMinor(from: "1.0"))
+  .package(url: "https://github.com/xmindltd/xmind-sdk-swift.git", .upToNextMinor(from: "1.0.0"))
   ```
 
 
