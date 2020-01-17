@@ -27,7 +27,7 @@ Manifest lists primary files that contained in this xmind file.
 
 If you create a new xmind file, you can directly operate sheets and topics after initializing a `Workbook` instance that represents a xmind file.
 
-If you open a existing xmind file. You need call `public func loadManifest()` of `Workbook` after initializing a workbook to load some base informations. And now you can access the `passwordHint` to read and write the passwordHint. then, you need call `public func loadContent(password: String? = nil)` to load the metadata and sheets. When it's loaded, you can operate sheets and topics.
+If you open a existing xmind file. You need call `public func loadManifest()` of `Workbook` after initializing a workbook to load some base informations. And now you can access the `passwordHint` to read and write the password hint. then, you need call `public func loadContent(password: String? = nil)` to load the metadata and sheets. When it's loaded, you can operate sheets and topics.
 
 
 
