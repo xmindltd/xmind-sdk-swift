@@ -43,7 +43,7 @@ public final class Workbook {
     
     private lazy var manifest: Manifest = Manifest.makeDefault()
     
-    private lazy var sheets: [Sheet] = [Sheet(title: "Sheet 1", rootTopic: Topic(title: "Topic 1"))]
+    private lazy var sheets: [Sheet] = []
     
     private lazy var metadata: Metadata = Metadata.makeDefault(activeSheetId: sheets.last?.id ?? "")
     

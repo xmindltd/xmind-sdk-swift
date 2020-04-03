@@ -13,6 +13,8 @@
 		07637CA3237BCE4200E05FE9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637CA2237BCE4200E05FE9 /* Theme.swift */; };
 		07637CA5237BD16600E05FE9 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637CA4237BD16600E05FE9 /* Point.swift */; };
 		07637CA7237BD27E00E05FE9 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07637CA6237BD27E00E05FE9 /* Marker.swift */; };
+		0791AF4A2437BD1C00F5ECDC /* Builders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0791AF492437BD1C00F5ECDC /* Builders.swift */; };
+		0791AF522437E38900F5ECDC /* ElementsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0791AF512437E38900F5ECDC /* ElementsBuilder.swift */; };
 		07B6604023700BE4000FE35A /* Workbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6603F23700BE4000FE35A /* Workbook.swift */; };
 		07B6604223700C9B000FE35A /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6604123700C9B000FE35A /* Topic.swift */; };
 		07B6604423701739000FE35A /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6604323701739000FE35A /* Error.swift */; };
@@ -31,6 +33,8 @@
 		07637CA2237BCE4200E05FE9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		07637CA4237BD16600E05FE9 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		07637CA6237BD27E00E05FE9 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		0791AF492437BD1C00F5ECDC /* Builders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builders.swift; sourceTree = "<group>"; };
+		0791AF512437E38900F5ECDC /* ElementsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsBuilder.swift; sourceTree = "<group>"; };
 		07B6603F23700BE4000FE35A /* Workbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workbook.swift; sourceTree = "<group>"; };
 		07B6604123700C9B000FE35A /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		07B6604323701739000FE35A /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -83,6 +87,15 @@
 			path = XMind;
 			sourceTree = "<group>";
 		};
+		0791AF482437BCEF00F5ECDC /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				0791AF492437BD1C00F5ECDC /* Builders.swift */,
+				0791AF512437E38900F5ECDC /* ElementsBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		07CABF32236FF2D900A50B58 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +116,7 @@
 		07CABF40236FF35C00A50B58 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0791AF482437BCEF00F5ECDC /* Builder */,
 				075072FC237D2F1A00DC2A3C /* XMind */,
 				075072FB237D2EFD00DC2A3C /* Internal */,
 				07CABF41236FF35C00A50B58 /* XMindSDK.h */,
@@ -203,6 +217,7 @@
 				07637C9D237BAA4400E05FE9 /* Manifest.swift in Sources */,
 				07637CA1237BCD3300E05FE9 /* Relationship.swift in Sources */,
 				07E117372398A77B0042C083 /* TemporaryStorge.swift in Sources */,
+				0791AF522437E38900F5ECDC /* ElementsBuilder.swift in Sources */,
 				07B6604423701739000FE35A /* Error.swift in Sources */,
 				07E1173B2398B3E50042C083 /* EncryptionData.swift in Sources */,
 				07637CA5237BD16600E05FE9 /* Point.swift in Sources */,
@@ -211,6 +226,7 @@
 				07FE404B23754B300070DE70 /* Sheet.swift in Sources */,
 				07637CA7237BD27E00E05FE9 /* Marker.swift in Sources */,
 				07E117392398B0EC0042C083 /* Crypto.swift in Sources */,
+				0791AF4A2437BD1C00F5ECDC /* Builders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +377,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -452,7 +468,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = net.xmind.XMindSDK;

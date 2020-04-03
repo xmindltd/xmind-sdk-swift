@@ -49,7 +49,7 @@ public class Topic: Codable {
     internal private(set) weak var superTopic: Topic? = nil
     
 
-    public init(title: String) {
+    public init(title: String? = nil) {
         self.id = UUID().uuidString
         self.class = "topic"
         self.title = title

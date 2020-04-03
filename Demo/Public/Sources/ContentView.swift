@@ -51,7 +51,9 @@ struct TopicCell: View {
     }
 }
 
-struct ContentView: View {
+struct WorkbookView: View {
+    
+    let loadedWorkbook: Workbook
     
     private func makeRows(from topic: Topic, indentLevel: Int) -> [Row] {
         var rows = [Row]()
@@ -70,34 +72,68 @@ struct ContentView: View {
         rows.append(contentsOf: makeRows(from: sheet.rootTopic, indentLevel: 1))
         return rows
     }
-
-    private func makeRows() -> [Row] {
-        guard let filePath = Bundle.main.path(forResource: "example0", ofType: "xmind") else { return [] }
-        
-        do {
-            let wb = try Workbook.open(filePath: filePath)
-            try wb.loadManifest()
-            try wb.loadContent()
-            
-            var rows = [Row]()
-            
-            for sheet in wb.allSheets {
-                rows.append(contentsOf: makeRows(from: sheet))
-            }
-            
-            return rows
-            
-        } catch let error {
-            print(error)
-            return []
-        }
-    }
     
+    private func makeRows() -> [Row] {
+        var rows = [Row]()
+        
+        for sheet in loadedWorkbook.allSheets {
+            rows.append(contentsOf: makeRows(from: sheet))
+        }
+        
+        return rows
+    }
     
     var body: some View {
         List(makeRows()) {
             TopicCell(row: $0)
         }
+    }
+}
+
+struct ContentView: View {
+    
+    private var example0Workbook: Workbook {
+        guard let filePath = Bundle.main.path(forResource: "example0", ofType: "xmind") else { fatalError() }
+        do {
+            let wb = try Workbook.open(filePath: filePath)
+            try wb.loadManifest()
+            try wb.loadContent()
+        
+            return wb
+            
+        } catch let error {
+            print(error)
+            fatalError()
+        }
+    }
+    
+    private var builtWorkbook: Workbook {
+        return try! workbook {
+            topic(title: "Apple") {
+                topic(title: "Hardware") {
+                    topic(title: "iPhone") {
+                        topic(title: "iPhone 6")
+                        topic(title: "iPhone 7 Plus")
+                        topic(title: "iPhone 8")
+                        topic(title: "iPhone XS Max")
+                    }
+                    topic(title: "Mac") {
+                        topic(title: "MacBook Pro")
+                        topic(title: "Mac mini")
+                        topic(title: "Mac Pro")
+                    }
+                }
+                
+                topic(title: "Software") {
+                    topic(title: "Xcode")
+                    topic(title: "Siri")
+                }
+            }
+        }
+    }
+    
+    var body: some View {
+        WorkbookView(loadedWorkbook: builtWorkbook)
     }
 }
 
