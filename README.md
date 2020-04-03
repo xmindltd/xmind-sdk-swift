@@ -9,7 +9,10 @@ This SDK enables you to create and modify xmind(`.xmind`) files, and it's writte
 Supported Platforms:
 
 - iOS 9+
+
 - macOS 10.11+
+
+  
 
 ## Structure of XMind files
 
@@ -22,6 +25,46 @@ Metadata represents the version of xmind file and the creator.
 Sheets contains all of the topics that belong to the each sheets(canvas).
 
 Manifest lists primary files that contained in this xmind file.
+
+
+
+## Fast Creating
+
+When you just wanna create a xmind file easily. Use the DSL.
+
+```swift
+import XMindSDK
+
+...
+...
+
+let wb = try! workbook {
+    topic(title: "Apple") {
+        topic(title: "Hardware") {
+            topic(title: "iPhone") {
+                topic(title: "iPhone 6")
+                topic(title: "iPhone 7 Plus")
+                topic(title: "iPhone 8")
+                topic(title: "iPhone XS Max")
+            }
+            topic(title: "Mac") {
+                topic(title: "MacBook Pro")
+                topic(title: "Mac mini")
+                topic(title: "Mac Pro")
+            }
+        }
+        
+        topic(title: "Software") {
+            topic(title: "Xcode")
+            topic(title: "Siri")
+        }
+    }
+}
+
+try wb.save(to: filePath)
+```
+
+
 
 ## Usage
 
