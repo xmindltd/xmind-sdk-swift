@@ -28,44 +28,6 @@ Manifest lists primary files that contained in this xmind file.
 
 
 
-## Fast Creating
-
-When you just wanna create a xmind file easily. Use the DSL.
-
-```swift
-import XMindSDK
-
-...
-...
-
-let wb = try! workbook {
-    topic(title: "Apple") {
-        topic(title: "Hardware") {
-            topic(title: "iPhone") {
-                topic(title: "iPhone 6")
-                topic(title: "iPhone 7 Plus")
-                topic(title: "iPhone 8")
-                topic(title: "iPhone XS Max")
-            }
-            topic(title: "Mac") {
-                topic(title: "MacBook Pro")
-                topic(title: "Mac mini")
-                topic(title: "Mac Pro")
-            }
-        }
-        
-        topic(title: "Software") {
-            topic(title: "Xcode")
-            topic(title: "Siri")
-        }
-    }
-}
-
-try wb.save(to: filePath)
-```
-
-
-
 ## Usage
 
 If you create a new xmind file, you can directly operate sheets and topics after initializing a `Workbook` instance that represents a xmind file.
@@ -101,6 +63,42 @@ sub1.addMarker(Marker.Priority.p2)
 
 try wb.save(to: filePath, password: "123456")
 ```
+
+
+### Fast Creating
+
+```swift
+import XMindSDK
+
+...
+...
+
+let wb = try! workbook {
+    topic(title: "Apple") {
+        topic(title: "Hardware") {
+            topic(title: "iPhone") {
+                topic(title: "iPhone 6")
+                topic(title: "iPhone 7 Plus")
+                topic(title: "iPhone 8")
+                topic(title: "iPhone XS Max")
+            }
+            topic(title: "Mac") {
+                topic(title: "MacBook Pro")
+                topic(title: "Mac mini")
+                topic(title: "Mac Pro")
+            }
+        }
+        
+        topic(title: "Software") {
+            topic(title: "Xcode")
+            topic(title: "Siri")
+        }
+    }
+}
+
+try wb.save(to: filePath)
+```
+
 
 
 
