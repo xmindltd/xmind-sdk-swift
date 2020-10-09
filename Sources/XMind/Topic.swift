@@ -34,6 +34,7 @@ public class Topic: Codable {
     
     public let `class`: String?
     
+    /// The title of this topic.
     public var title: String?
     
     public let structureClass: String?

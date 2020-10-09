@@ -26,20 +26,31 @@
 
 import Foundation
 
+/// Sheet represents a mind map panel
+/// which contains a root topic.
 public class Sheet: Codable {
     
+    
+    /// The unique ID of this sheet.
     public let id: String
     
+    /// The class of this sheet.
     public let `class`: String
     
+    /// Title of this sheet which represents the name of this panel.
     public var title: String
     
+    /// The root topic of this panel.
+    /// A sheet only can contains a root topic,
     public let rootTopic: Topic
     
+    /// The topic positioning function.
     public let topicPositioning: String
     
+    /// The relationships of this panel.
     public let relationships: [Relationship]?
     
+    /// Theme of this panel.
     public let theme: Theme
     
     public init(title: String, rootTopic: Topic) {
