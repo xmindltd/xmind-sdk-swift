@@ -116,7 +116,7 @@ try wb.save(to: filePath)
 - Swift Package Manager
 
   ```
-  .package(url: "https://github.com/xmindltd/xmind-sdk-swift.git", .upToNextMinor(from: "1.0.0"))
+  .package(url: "https://github.com/xmindltd/xmind-sdk-swift.git", .upToNextMinor(from: "1.1.0"))
   ```
 
 
